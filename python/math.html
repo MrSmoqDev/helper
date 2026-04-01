@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Moduł Math Szczegółowo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LEWY SIDEBAR (Nawigacja między plikami) -->
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="general.html">📘 Wstęp i Ogólne</a></li>
+            <li><a href="math.html" class="active">📐 Moduł Math</a></li>
+            <li><a href="time.html">⏳ Moduł Time</a></li>
+            <li><a href="#">🎲 Moduł Random (Wkrótce)</a></li>
+        </ul>
+
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót do Menu</a>
+        </div>
+    </nav>
+
+    <!-- GŁÓWNA TREŚĆ -->
+    <div class="main-content">
+        <header>
+            <h1>Moduł Math 📐</h1>
+            <p>Kompletny przewodnik po matematyce w Pythonie.</p>
+        </header>
+
+        <!-- Sekcja 1 -->
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Co to jest moduł Math?</h3>
+            <p>Moduł <code class="inline">math</code> to wbudowana biblioteka Pythona, która dostarcza funkcje matematyczne zdefiniowane przez standard C. Nie trzeba nic instalować – jest dostępny od razu po zainstalowaniu Pythona.</p>
+            <pre><code><span class="kw">import</span> math  <span class="com"># To musi być na początku pliku</span></code></pre>
+        </div>
+
+        <!-- Sekcja 2 -->
+        <div class="lesson-card" id="sec-stale">
+            <h3>2. Ważne Stałe Matematyczne</h3>
+            <p>Math udostępnia precyzyjne wartości stałych, których nie musisz wpisywać ręcznie.</p>
+            <table>
+                <tr>
+                    <th>Stała</th>
+                    <th>Opis</th>
+                    <th>Wartość</th>
+                </tr>
+                <tr>
+                    <td><code class="inline">math.pi</code></td>
+                    <td>Liczba Pi (π)</td>
+                    <td>3.14159...</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">math.e</code></td>
+                    <td>Liczba Eulera (e)</td>
+                    <td>2.71828...</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">math.tau</code></td>
+                    <td>Stała Tau (2π)</td>
+                    <td>6.28318...</td>
+                </tr>
+            </table>
+            <pre><code><span class="kw">import</span> math
+<span class="kw">print</span>(<span class="str">f"Pi: {math.pi}"</span>)
+<span class="kw">print</span>(<span class="str">f"E: {math.e}"</span>)</code></pre>
+        </div>
+
+        <!-- Sekcja 3 -->
+        <div class="lesson-card" id="sec-zaokraglanie">
+            <h3>3. Zaokrąglanie Liczb</h3>
+            <p>To najczęściej używane funkcje. Zwróć uwagę na różnicę między <span class="func">floor</span> a <span class="func">ceil</span>.</p>
+            
+            <ul>
+                <li><code class="inline">math.floor(x)</code> – Zaokrągla w <strong>dół</strong> (do podłogi).</li>
+                <li><code class="inline">math.ceil(x)</code> – Zaokrągla w <strong>górę</strong> (do sufitu).</li>
+                <li><code class="inline">math.trunc(x)</code> – Ucina część dziesiętną (jak int).</li>
+            </ul>
+
+            <pre><code><span class="kw">import</span> math
+
+liczba = <span class="num">3.7</span>
+
+<span class="com"># Podłoga (zawsze mniej lub równo)</span>
+<span class="kw">print</span>(<span class="func">math.floor</span>(liczba))  <span class="out"># Wynik: 3</span>
+
+<span class="com"># Sufit (zawsze więcej lub równo)</span>
+<span class="kw">print</span>(<span class="func">math.ceil</span>(liczba))   <span class="out"># Wynik: 4</span>
+
+<span class="com"># Ucięcie (sama część całkowita)</span>
+<span class="kw">print</span>(<span class="func">math.trunc</span>(-3.7))    <span class="out"># Wynik: -3</span></code></pre>
+        </div>
+
+        <!-- Sekcja 4 -->
+        <div class="lesson-card" id="sec-potegi">
+            <h3>4. Potęgi i Pierwiastki</h3>
+            <p>Do obliczeń algebraicznych używamy tych funkcji:</p>
+            <ul>
+                <li><code class="inline">math.sqrt(x)</code> – Pierwiastek kwadratowy.</li>
+                <li><code class="inline">math.pow(x, y)</code> – Potęgowanie (x do potęgi y).</li>
+                <li><code class="inline">math.factorial(x)</code> – Silnia (x!).</li>
+            </ul>
+
+            <pre><code><span class="kw">import</span> math
+
+<span class="com"># Pierwiastek z 16</span>
+<span class="kw">print</span>(<span class="func">math.sqrt</span>(<span class="num">16</span>))        <span class="out"># Wynik: 4.0</span>
+
+<span class="com"># 2 do potęgi 3 (2*2*2)</span>
+<span class="kw">print</span>(<span class="func">math.pow</span>(<span class="num">2</span>, <span class="num">3</span>))       <span class="out"># Wynik: 8.0</span>
+
+<span class="com"># Silnia z 5 (5*4*3*2*1)</span>
+<span class="kw">print</span>(<span class="func">math.factorial</span>(<span class="num">5</span>))    <span class="out"># Wynik: 120</span></code></pre>
+        </div>
+
+        <!-- Sekcja 5 -->
+        <div class="lesson-card" id="sec-trygonometria">
+            <h3>5. Trygonometria (Ważne!)</h3>
+            <p>Funkcje trygonometryczne w Pythonie pracują na <strong>radianach</strong>, a nie stopniach!</p>
+            <ul>
+                <li><code class="inline">math.sin(x)</code>, <code class="inline">math.cos(x)</code>, <code class="inline">math.tan(x)</code></li>
+                <li><code class="inline">math.degrees(x)</code> – Zamienia radiany na stopnie.</li>
+                <li><code class="inline">math.radians(x)</code> – Zamienia stopnie na radiany.</li>
+            </ul>
+
+            <pre><code><span class="kw">import</span> math
+
+kat_stopnie = <span class="num">90</span>
+
+<span class="com"># Najpierw zamień stopnie na radiany!</span>
+kat_radiany = <span class="func">math.radians</span>(kat_stopnie)
+
+<span class="com"># Teraz oblicz sinus</span>
+wynik = <span class="func">math.sin</span>(kat_radiany)
+
+<span class="kw">print</span>(<span class="str">f"Sinus 90 stopni: {wynik}"</span>) <span class="out"># Wynik: 1.0</span></code></pre>
+        </div>
+
+        <!-- Sekcja 6 -->
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga Funkcji</h3>
+            <p>Najczęściej używane funkcje w jednym miejscu:</p>
+            <table>
+                <tr>
+                    <th>Funkcja</th>
+                    <th>Działanie</th>
+                    <th>Przykład</th>
+                </tr>
+                <tr>
+                    <td><span class="func">math.floor(3.2)</span></td>
+                    <td>W dół</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.ceil(3.2)</span></td>
+                    <td>W górę</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.sqrt(9)</span></td>
+                    <td>Pierwiastek</td>
+                    <td>3.0</td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.pow(2, 3)</span></td>
+                    <td>Potęga</td>
+                    <td>8.0</td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.pi</span></td>
+                    <td>Liczba Pi</td>
+                    <td>3.14...</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- PRAWY SIDEBAR (Spis Treści) -->
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Wstęp</a></li>
+            <li><a href="#sec-stale">2. Stałe Matematyczne</a></li>
+            <li><a href="#sec-zaokraglanie">3. Zaokrąglanie</a></li>
+            <li><a href="#sec-potegi">4. Potęgi i Pierwiastki</a></li>
+            <li><a href="#sec-trygonometria">5. Trygonometria</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>

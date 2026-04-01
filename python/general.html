@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Ogólne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --py-blue: #306998;
+            --py-yellow: #ffd43b;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --sidebar-bg: #2c3e50;
+            --sidebar-text: #ecf0f1;
+            --active-item: #34495e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 30px;
+            color: var(--py-yellow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 10px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #bdc3c7;
+            padding: 12px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            background: var(--active-item);
+            color: white;
+            padding-left: 20px;
+        }
+
+        .nav-links a.active {
+            background: var(--py-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        .back-home {
+            margin-top: auto;
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+        }
+
+        .back-home a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-home a:hover { color: #ff6b6b; }
+
+        /* --- GŁÓWNA TREŚĆ --- */
+        .main-content {
+            margin-left: 260px; /* Szerokość sidebara */
+            padding: 40px;
+            width: 100%;
+        }
+
+        header { margin-bottom: 40px; }
+        header h1 { color: var(--py-blue); font-size: 2.5rem; }
+        header p { color: #636e72; font-size: 1.1rem; }
+
+        .lesson-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .lesson-card h3 { color: var(--dark); margin-bottom: 15px; border-left: 4px solid var(--py-yellow); padding-left: 15px; }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 15px;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            .nav-links {
+                display: flex;
+                gap: 10px;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            .nav-links li { margin-bottom: 0; }
+            .back-home { display: none; } /* Ukryj przycisk powrotu na mobile w sidebarze */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="general.html" class="active">📘 Wstęp i Ogólne</a></li>
+            <li><a href="math.html">📐 Moduł Math</a></li>
+            <li><a href="time.html">⏳ Moduł Time</a></li>
+            <li><a href="#">🎲 Moduł Random (Wkrótce)</a></li>
+        </ul>
+
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót do Menu Głównego</a>
+        </div>
+    </nav>
+
+    <!-- TREŚĆ -->
+    <div class="main-content">
+        <header>
+            <h1>Wstęp do Pythona</h1>
+            <p>Podstawy składni i najważniejsze informacje na start.</p>
+        </header>
+
+        <div class="lesson-card">
+            <h3>Dlaczego Python?</h3>
+            <p>Python jest językiem interpretowanym, co oznacza, że kod jest wykonywany linia po linii. Jest niezwykle czytelny, co sprawia, że idealnie nadaje się dla początkujących.</p>
+        </div>
+
+        <div class="lesson-card">
+            <h3>Jak uruchomić kod?</h3>
+            <p>Możesz użyć IDLE, VS Code lub uruchomić skrypt w terminalu:</p>
+            <pre style="background:#2d3436; color:#fff; padding:15px; border-radius:8px; margin-top:10px; font-family:'Fira Code',monospace;">python main.py</pre>
+        </div>
+
+        <div class="lesson-card">
+            <h3>Wybierz konkretną bibliotekę</h3>
+            <p>Kliknij w sidebarze po lewej stronie, aby przejść do szczegółowego opisu konkretnych modułów, np. <strong>Math</strong>.</p>
+        </div>
+    </div>
+
+</body>
+</html>
