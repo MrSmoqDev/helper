@@ -11,9 +11,7 @@
 
 ## 🚀 Demo
 
-Odwiedź żywą stronę tutaj: **[🔗 LINK_DO_TWOJEJ_STRONY.github.io](https://twoj-nick.github.io/twoje-repo/)**
-
-*(Zastąp powyższy link swoim adresem GitHub Pages)*
+Odwiedź stronę tutaj: **[🔗 mrsmoqdev.github.io](https://mrsmoqdev.github.io/helper/)**
 
 ---
 
