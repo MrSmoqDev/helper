@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Struktury Sterujące</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html">⚙️ Składnia</a></li>
+            <li><a href="variables.html">📦 Zmienne</a></li>
+            <li><a href="control.html" class="active">🔀 Kontrola</a></li>
+            <li><a href="functions.html">⚡ Funkcje</a></li>
+            <li><a href="arrays.html">📊 Tablice</a></li>
+            <li><a href="oop.html">🏗️ OOP</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Struktury Sterujące 🔀</h1>
+            <p>if/else, switch, pętle for, while, do-while.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-if">
+            <h3>1. Instrukcja if/else</h3>
+            <pre><code><span class="type">int</span> wiek = <span class="num">18</span>;
+
+<span class="kw">if</span> (wiek >= <span class="num">18</span>) {
+    cout << <span class="str">"Pełnoletni"</span> << endl;
+} <span class="kw">else</span> {
+    cout << <span class="str">"Niepełnoletni"</span> << endl;
+}
+
+<span class="com"># Wiele warunków:</span>
+<span class="type">int</span> wynik = <span class="num">75</span>;
+
+<span class="kw">if</span> (wynik >= <span class="num">90</span>) {
+    cout << <span class="str">"Bardzo dobry"</span> << endl;
+} <span class="kw">else if</span> (wynik >= <span class="num">75</span>) {
+    cout << <span class="str">"Dobry"</span> << endl;
+} <span class="kw">else if</span> (wynik >= <span class="num">50</span>) {
+    cout << <span class="str">"Dostateczny"</span> << endl;
+} <span class="kw">else</span> {
+    cout << <span class="str">"Niedostateczny"</span> << endl;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-switch">
+            <h3>2. Instrukcja switch</h3>
+            <pre><code><span class="type">int</span> dzien = <span class="num">3</span>;
+
+<span class="kw">switch</span> (dzien) {
+    <span class="kw">case</span> <span class="num">1</span>:
+        cout << <span class="str">"Poniedziałek"</span> << endl;
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="num">2</span>:
+        cout << <span class="str">"Wtorek"</span> << endl;
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="num">3</span>:
+        cout << <span class="str">"Środa"</span> << endl;
+        <span class="kw">break</span>;
+    <span class="kw">default</span>:
+        cout << <span class="str">"Inny dzień"</span> << endl;
+}
+
+<span class="com"># Bez break - wykonuje się kolejne case'y:</span>
+<span class="type">char</span> ocena = <span class="str">'B'</span>;
+<span class="kw">switch</span> (ocena) {
+    <span class="kw">case</span> <span class="str">'A'</span>: cout << <span class="str">"Celujący"</span> << endl;
+    <span class="kw">case</span> <span class="str">'B'</span>: cout << <span class="str">"Bardzo dobry"</span> << endl; <span class="com"># Wykona się!</span>
+    <span class="kw">default</span>: cout << <span class="str">"Koniec"</span> << endl;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-for">
+            <h3>3. Pętla for</h3>
+            <pre><code><span class="com"># Podstawowa pętla for:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+    cout << i << <span class="str">" "</span>;  <span class="out"># 0 1 2 3 4</span>
+}
+
+<span class="com"># Odliczanie:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">10</span>; i > <span class="num">0</span>; i--) {
+    cout << i << <span class="str">" "</span>;  <span class="out"># 10 9 8 ... 1</span>
+}
+
+<span class="com"># Krok co 2:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt;= <span class="num">10</span>; i += <span class="num">2</span>) {
+    cout << i << <span class="str">" "</span>;  <span class="out"># 0 2 4 6 8 10</span>
+}
+
+<span class="com"># Pętla z break:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">100</span>; i++) {
+    <span class="kw">if</span> (i == <span class="num">10</span>) <span class="kw">break</span>;
+    cout << i << <span class="str">" "</span>;  <span class="out"># 0 do 9</span>
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-while">
+            <h3>4. Pętla while</h3>
+            <pre><code><span class="com"># while - sprawdza warunek NA POCZĄTKU:</span>
+<span class="type">int</span> i = <span class="num">0</span>;
+<span class="kw">while</span> (i &lt; <span class="num">5</span>) {
+    cout << i << <span class="str">" "</span>;
+    i++;
+}
+
+<span class="com"># do-while - sprawdza warunek NA KOŃCU:</span>
+<span class="type">int</span> j = <span class="num">0</span>;
+<span class="kw">do</span> {
+    cout << j << <span class="str">" "</span>;
+    j++;
+} <span class="kw">while</span> (j &lt; <span class="num">5</span>);
+
+<span class="com"># Różnica: do-while wykona się przynajmniej raz!</span>
+<span class="type">int</span> x = <span class="num">10</span>;
+<span class="kw">while</span> (x &lt; <span class="num">5</span>) { cout << <span class="str">"Nie wypisze"</span>; }  <span class="com"># Nigdy</span>
+<span class="kw">do</span> { cout << <span class="str">"Wypisze raz"</span>; } <span class="kw">while</span> (x &lt; <span class="num">5</span>);  <span class="com"># Raz</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-continue">
+            <h3>5. continue i break</h3>
+            <pre><code><span class="com"># break - przerywa CAŁĄ pętlę:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">10</span>; i++) {
+    <span class="kw">if</span> (i == <span class="num">5</span>) <span class="kw">break</span>;
+    cout << i << <span class="str">" "</span>;  <span class="out"># 0 1 2 3 4</span>
+}
+
+<span class="com"># continue - przerywa ITERACJĘ, przechodzi do następnej:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+    <span class="kw">if</span> (i == <span class="num">2</span>) <span class="kw">continue</span>;
+    cout << i << <span class="str">" "</span>;  <span class="out"># 0 1 3 4 (pomija 2)</span>
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>6. 🎮 Projekt: Gra w Zgadnij Liczbę</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;cstdlib&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;ctime&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="func">srand</span>(<span class="func">time</span>(<span class="num">0</span>));  <span class="com"># Inicjalizacja generatora losowego</span>
+    <span class="type">int</span> wylosowana = <span class="func">rand</span>() % <span class="num">100</span> + <span class="num">1</span>;  <span class="com"># 1-100</span>
+    <span class="type">int</span> zgadnij;
+    <span class="type">int</span> proby = <span class="num">0</span>;
+    
+    cout << <span class="str">"=== ZGADNIJ LICZBĘ (1-100) ==="</span> << endl;
+    
+    <span class="kw">do</span> {
+        cout << <span class="str">"Twoja liczba: "</span>;
+        cin >> zgadnij;
+        proby++;
+        
+        <span class="kw">if</span> (zgadnij < wylosowana) {
+            cout << <span class="str">"Za mało! Spróbuj większej."</span> << endl;
+        } <span class="kw">else if</span> (zgadnij > wylosowana) {
+            cout << <span class="str">"Za dużo! Spróbuj mniejszej."</span> << endl;
+        }
+    } <span class="kw">while</span> (zgadnij != wylosowana);
+    
+    cout << <span class="str">"\n🎉 BRAWO! Zgadłeś w "</span> << proby << <span class="str">" próbach!"</span> << endl;
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-if">1. if/else</a></li>
+            <li><a href="#sec-switch">2. switch</a></li>
+            <li><a href="#sec-for">3. Pętla for</a></li>
+            <li><a href="#sec-while">4. Pętla while</a></li>
+            <li><a href="#sec-continue">5. continue/break</a></li>
+            <li><a href="#sec-projekt">6. Gra w Zgadnij Liczbę</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

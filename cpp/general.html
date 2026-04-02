@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Wstęp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="general.html" class="active">📘 Wstęp</a></li>
+            <li><a href="modules/syntax.html">⚙️ Składnia</a></li>
+            <li><a href="modules/variables.html">📦 Zmienne</a></li>
+            <li><a href="modules/control.html">🔀 Kontrola</a></li>
+            <li><a href="modules/functions.html">⚡ Funkcje</a></li>
+            <li><a href="modules/arrays.html">📊 Tablice</a></li>
+            <li><a href="modules/oop.html">🏗️ OOP</a></li>
+            <li><a href="modules/files.html">📁 Pliki</a></li>
+            <li><a href="modules/game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót do Menu</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Wstęp do C++ 🚀</h1>
+            <p>Szybki, wydajny i potężny język programowania.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-czym">
+            <h3>1. Czym jest C++?</h3>
+            <p>C++ to język programowania ogólnego zastosowania, stworzony jako rozszerzenie języka C. Jest znany z:</p>
+            <ul>
+                <li>✅ <strong>Wysokiej wydajności</strong> – kod kompilowany do natywnego</li>
+                <li>✅ <strong>Kontroli pamięci</strong> – ręczne zarządzanie zasobami</li>
+                <li>✅ <strong>Programowania obiektowego</strong> – klasy, dziedziczenie, polimorfizm</li>
+                <li>✅ <strong>Szerokiego zastosowania</strong> – gry, systemy, aplikacje</li>
+            </ul>
+        </div>
+
+        <div class="lesson-card" id="sec-hello">
+            <h3>2. Pierwszy Program – Hello World</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+
+<span class="type">int</span> <span class="func">main</span>() {
+    std::cout << <span class="str">"Hello World!"</span> << std::endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+            <p><strong>Wyjaśnienie:</strong></p>
+            <ul>
+                <li><code class="inline">#include &lt;iostream&gt;</code> – dołącza bibliotekę wejścia/wyjścia</li>
+                <li><code class="inline">int main()</code> – funkcja główna, od niej zaczyna się program</li>
+                <li><code class="inline">std::cout</code> – strumień wyjścia (wyświetlanie)</li>
+                <li><code class="inline">std::endl</code> – nowa linia + flush bufora</li>
+                <li><code class="inline">return 0</code> – program zakończył się sukcesem</li>
+            </ul>
+        </div>
+
+        <div class="lesson-card" id="sec-kompilacja">
+            <h3>3. Kompilacja i Uruchomienie</h3>
+            <p>C++ jest językiem <strong>kompilowanym</strong> – kod źródłowy musi zostać przetłumaczony na język maszynowy.</p>
+            
+            <h4 style="margin: 15px 0 10px 0; color: var(--cpp-blue);">🔹 Windows (MinGW/g++)</h4>
+            <pre><code>g++ -o program main.cpp
+program.exe</code></pre>
+
+            <h4 style="margin: 15px 0 10px 0; color: var(--cpp-blue);">🔹 Linux/Mac</h4>
+            <pre><code>g++ -o program main.cpp
+./program</code></pre>
+
+            <h4 style="margin: 15px 0 10px 0; color: var(--cpp-blue);">🔹 Visual Studio</h4>
+            <pre><code>Ctrl+F5 – Uruchom bez debugowania
+F5 – Uruchom z debugowaniem</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-struktura">
+            <h3>4. Struktura Programu C++</h3>
+            <pre><code><span class="com">// Dyrektywy preprocesora</span>
+<span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;string&gt;</span>
+
+<span class="com">// Przestrzeń nazw (umożliwia pominięcie std::)</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="com">// Funkcja główna</span>
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="com">// Twój kod tutaj</span>
+    cout << <span class="str">"Witaj w C++!"</span> << endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-porownanie">
+            <h3>5. C++ vs Python – Różnice</h3>
+            <table>
+                <tr><th>Cecha</th><th>C++</th><th>Python</th></tr>
+                <tr><td>Typowanie</td><td>Statyczne (jawne)</td><td>Dynamiczne (niejawne)</td></tr>
+                <tr><td>Kompilacja</td><td>Tak (do exe)</td><td>Nie (interpretowany)</td></tr>
+                <tr><td>Wydajność</td><td>Bardzo wysoka</td><td>Średnia</td></tr>
+                <tr><td>Zarządzanie pamięcią</td><td>Ręczne/RAII</td><td>Automatyczne (GC)</td></tr>
+                <tr><td>Składnia</td><td>Bardziej rozbudowana</td><td>Prosta, czytelna</td></tr>
+                <tr><td>Zastosowanie</td><td>Gry, systemy, embedded</td><td>Web, AI, skrypty</td></tr>
+            </table>
+        </div>
+
+        <div class="lesson-card" id="sec-srodowiska">
+            <h3>6. Środowiska Programistyczne (IDE)</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong> Visual Studio</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Pełne IDE, najlepsze na Windows</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>💙 VS Code</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Lekkie, z rozszerzeniami C++</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>🔵 CLion</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">JetBrains, płatne, potężne</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>⚪ Code::Blocks</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Darmowe, lekkie, dobre na start</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-czym">1. Czym jest C++?</a></li>
+            <li><a href="#sec-hello">2. Hello World</a></li>
+            <li><a href="#sec-kompilacja">3. Kompilacja</a></li>
+            <li><a href="#sec-struktura">4. Struktura Programu</a></li>
+            <li><a href="#sec-porownanie">5. C++ vs Python</a></li>
+            <li><a href="#sec-srodowiska">6. IDE</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

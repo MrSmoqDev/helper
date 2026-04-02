@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Tablice i Wektory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html">⚙️ Składnia</a></li>
+            <li><a href="variables.html">📦 Zmienne</a></li>
+            <li><a href="control.html">🔀 Kontrola</a></li>
+            <li><a href="functions.html">⚡ Funkcje</a></li>
+            <li><a href="arrays.html" class="active">📊 Tablice</a></li>
+            <li><a href="oop.html">🏗️ OOP</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Tablice i Wektory 📊</h1>
+            <p>Przechowywanie wielu danych: tablice statyczne, dynamiczne wektory i stringi.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-arrays">
+            <h3>1. Tabice Statyczne (Arrays)</h3>
+            <p>Tablica to zbiór elementów tego samego typu pod jednym indeksem.</p>
+            <pre><code><span class="com"># Deklaracja tablicy 5 liczb:</span>
+<span class="type">int</span> liczby[<span class="num">5</span>] = {<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">40</span>, <span class="num">50</span>};
+
+<span class="com"># Dostęp (indeks od 0!):</span>
+cout << liczby[<span class="num">0</span>] << endl;  <span class="out"># 10</span>
+cout << liczby[<span class="num">2</span>] << endl;  <span class="out"># 30</span>
+
+<span class="com"># Zmiana wartości:</span>
+liczby[<span class="num">1</span>] = <span class="num">99</span>;
+
+<span class="com"># Iteracja pętlą:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+    cout << liczby[i] << <span class="str">" "</span>;
+}
+
+<span class="com"># Pętla zakresowa (C++11):</span>
+<span class="kw">for</span> (<span class="type">int</span> x : liczby) {
+    cout << x << <span class="str">" "</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-vectors">
+            <h3>2. Wektory (std::vector)</h3>
+            <p>Wektory to dynamiczne tablice – mogą zmieniać rozmiar w trakcie działania programu.</p>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="com"># Tworzenie wektora:</span>
+vector&lt;<span class="type">int</span>&gt; liczby;
+
+<span class="com"># Dodawanie elementów:</span>
+liczby.<span class="func">push_back</span>(<span class="num">10</span>);
+liczby.<span class="func">push_back</span>(<span class="num">20</span>);
+liczby.<span class="func">push_back</span>(<span class="num">30</span>);
+
+<span class="com"># Rozmiar:</span>
+cout << <span class="str">"Rozmiar: "</span> << liczby.<span class="func">size</span>() << endl;  <span class="out"># 3</span>
+
+<span class="com"># Dostęp:</span>
+cout << liczby[<span class="num">0</span>] << endl;  <span class="out"># 10</span>
+
+<span class="com"># Usuwanie ostatniego:</span>
+liczby.<span class="func">pop_back</span>();
+
+<span class="com"># Iteracja:</span>
+<span class="kw">for</span> (<span class="type">int</span> x : liczby) {
+    cout << x << <span class="str">" "</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-strings">
+            <h3>3. Stringi (std::string)</h3>
+            <p>W C++ używamy <code>std::string</code> zamiast tablic znaków <code>char[]</code>.</p>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;string&gt;</span>
+
+string imie = <span class="str">"Jan"</span>;
+string nazwisko = <span class="str">"Kowalski"</span>;
+
+<span class="com"># Łączenie stringów:</span>
+string pelne = imie + <span class="str">" "</span> + nazwisko;
+cout << pelne << endl;  <span class="out"># Jan Kowalski</span>
+
+<span class="com"># Długość:</span>
+cout << imie.<span class="func">length</span>() << endl;  <span class="out"># 3</span>
+
+<span class="com"># Dostęp do znaku:</span>
+cout << imie[<span class="num">0</span>] << endl;  <span class="out"># J</span>
+
+<span class="com"># Porównywanie:</span>
+<span class="kw">if</span> (imie == <span class="str">"Jan"</span>) {
+    cout << <span class="str">"To Jan!"</span> << endl;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-2d">
+            <h3>4. Tablice Wielowymiarowe</h3>
+            <pre><code><span class="com"># Tablica 3x3 (np. plansza):</span>
+<span class="type">int</span> plansza[<span class="num">3</span>][<span class="num">3</span>] = {
+    {<span class="num">0</span>, <span class="num">0</span>, <span class="num">0</span>},
+    {<span class="num">0</span>, <span class="num">0</span>, <span class="num">0</span>},
+    {<span class="num">0</span>, <span class="num">0</span>, <span class="num">0</span>}
+};
+
+<span class="com"># Dostęp:</span>
+plansza[<span class="num">1</span>][<span class="num">2</span>] = <span class="num">5</span>;  <span class="com"># Wiersz 1, Kolumna 2</span>
+
+<span class="com"># Iteracja:</span>
+<span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++) {
+    <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) {
+        cout << plansza[i][j] << <span class="str">" "</span>;
+    }
+    cout << endl;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>5. 🛠️ Projekt: Lista Zakupów</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;vector&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">int</span> <span class="func">main</span>() {
+    vector&lt;string&gt; lista;
+    string item;
+    
+    cout << <span class="str">"=== LISTA ZAKUPÓW ==="</span> << endl;
+    cout << <span class="str">"Wpisuj produkty (wpisz 'koniec' aby zakończyć):"</span> << endl;
+    
+    <span class="kw">while</span> (<span class="kw">true</span>) {
+        cin >> item;
+        <span class="kw">if</span> (item == <span class="str">"koniec"</span>) <span class="kw">break</span>;
+        lista.<span class="func">push_back</span>(item);
+    }
+    
+    cout << <span class="str">"\nTwoja lista:"</span> << endl;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; lista.<span class="func">size</span>(); i++) {
+        cout << (i + <span class="num">1</span>) << <span class="str">". "</span> << lista[i] << endl;
+    }
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-arrays">1. Tablice Statyczne</a></li>
+            <li><a href="#sec-vectors">2. Wektory</a></li>
+            <li><a href="#sec-strings">3. Stringi</a></li>
+            <li><a href="#sec-2d">4. Tablice 2D</a></li>
+            <li><a href="#sec-projekt">5. Lista Zakupów</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

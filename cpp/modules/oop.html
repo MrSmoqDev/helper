@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Programowanie Obiektowe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html">⚙️ Składnia</a></li>
+            <li><a href="variables.html">📦 Zmienne</a></li>
+            <li><a href="control.html">🔀 Kontrola</a></li>
+            <li><a href="functions.html">⚡ Funkcje</a></li>
+            <li><a href="arrays.html">📊 Tablice</a></li>
+            <li><a href="oop.html" class="active">🏗️ OOP</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Programowanie Obiektowe 🏗️</h1>
+            <p>Klasy, obiekty, enkapsulacja, konstruktory i dziedziczenie.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-klasy">
+            <h3>1. Klasy i Obiekty</h3>
+            <p>Klasa to szablon, a obiekt to konkretna instancja tej klasy.</p>
+            <pre><code><span class="kw">class</span> <span class="type">Samochod</span> {
+<span class="kw">public</span>:
+    string marka;
+    string model;
+    <span class="type">int</span> rok;
+    
+    <span class="type">void</span> <span class="func">jedz</span>() {
+        cout << <span class="str">" "</span> << marka << <span class="str">" "</span> << model << <span class="str">" jedzie!"</span> << endl;
+    }
+};
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="com"># Tworzenie obiektów:</span>
+    Samochod auto1;
+    auto1.marka = <span class="str">"Toyota"</span>;
+    auto1.model = <span class="str">"Corolla"</span>;
+    auto1.rok = <span class="num">2020</span>;
+    
+    auto1.<span class="func">jedz</span>();  <span class="out"># Toyota Corolla jedzie!</span>
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-konstruktor">
+            <h3>2. Konstruktory</h3>
+            <p>Specjalna metoda wywoływana automatycznie przy tworzeniu obiektu.</p>
+            <pre><code><span class="kw">class</span> <span class="type">Osoba</span> {
+<span class="kw">public</span>:
+    string imie;
+    <span class="type">int</span> wiek;
+    
+    <span class="com"># Konstruktor:</span>
+    <span class="func">Osoba</span>(string i, <span class="type">int</span> w) {
+        imie = i;
+        wiek = w;
+    }
+    
+    <span class="type">void</span> <span class="func">przedstaw</span>() {
+        cout << <span class="str">"Cześć, mam "</span> << wiek << <span class="str">" lat i mam na imię "</span> << imie << endl;
+    }
+};
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="com"># Wywołanie konstruktora:</span>
+    Osoba jan(<span class="str">"Jan"</span>, <span class="num">25</span>);
+    jan.<span class="func">przedstaw</span>();  <span class="out"># Cześć, mam 25 lat...</span>
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-enkapsulacja">
+            <h3>3. Enkapsulacja (private/public)</h3>
+            <p>Ukrywaj dane wewnętrzne (<code>private</code>), udostępniaj metody (<code>public</code>).</p>
+            <pre><code><span class="kw">class</span> <span class="type">Konto</span> {
+<span class="kw">private</span>:
+    <span class="type">double</span> saldo;  <span class="com"># Niedostępne z zewnątrz</span>
+    
+<span class="kw">public</span>:
+    <span class="func">Konto</span>() { saldo = <span class="num">0</span>; }
+    
+    <span class="type">void</span> <span class="func">wplac</span>(<span class="type">double</span> kwota) {
+        <span class="kw">if</span> (kwota > <span class="num">0</span>) saldo += kwota;
+    }
+    
+    <span class="type">double</span> <span class="func">getSaldo</span>() {
+        <span class="kw">return</span> saldo;
+    }
+};
+
+<span class="type">int</span> <span class="func">main</span>() {
+    Konto moje;
+    moje.<span class="func">wplac</span>(<span class="num">100</span>);
+    <span class="com"># moje.saldo = 1000;  # BŁĄD! private</span>
+    cout << <span class="str">"Saldo: "</span> << moje.<span class="func">getSaldo</span>() << endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-dziedziczenie">
+            <h3>4. Dziedziczenie</h3>
+            <pre><code><span class="kw">class</span> <span class="type">Zwierzak</span> {
+<span class="kw">public</span>:
+    <span class="type">void</span> <span class="func">oddychaj</span>() { cout << <span class="str">"Oddycham"</span> << endl; }
+};
+
+<span class="com"># Klasa pies dziedziczy po Zwierzak:</span>
+<span class="kw">class</span> <span class="type">Pies</span> : <span class="kw">public</span> Zwierzak {
+<span class="kw">public</span>:
+    <span class="type">void</span> <span class="func">szczekaj</span>() { cout << <span class="str">"Hau hau!"</span> << endl; }
+};
+
+<span class="type">int</span> <span class="func">main</span>() {
+    Pies burek;
+    burek.<span class="func">szczekaj</span>();   <span class="out"># Hau hau!</span>
+    burek.<span class="func">oddychaj</span>();  <span class="out"># Oddycham (odziedziczone)</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>5. 🛠️ Projekt: System Bohaterów</h3>
+            <pre><code><span class="kw">class</span> <span class="type">Bohater</span> {
+<span class="kw">protected</span>:
+    string imie;
+    <span class="type">int</span> hp;
+    <span class="type">int</span> atak;
+    
+<span class="kw">public</span>:
+    <span class="func">Bohater</span>(string i, <span class="type">int</span> h, <span class="type">int</span> a) : imie(i), hp(h), atak(a) {}
+    
+    <span class="type">void</span> <span class="func">atakuj</span>(Bohater &cel) {
+        cel.hp -= atak;
+        cout << imie << <span class="str">" atakuje "</span> << cel.imie << <span class="str">" za "</span> << atak << <span class="str">" obrażeń!"</span> << endl;
+    }
+    
+    <span class="type">bool</span> <span class="func">zyje</span>() { <span class="kw">return</span> hp > <span class="num">0</span>; }
+    <span class="type">void</span> <span class="func">status</span>() { cout << imie << <span class="str">" HP: "</span> << hp << endl; }
+};
+
+<span class="type">int</span> <span class="func">main</span>() {
+    Bohater gracz(<span class="str">"Rycerz"</span>, <span class="num">100</span>, <span class="num">20</span>);
+    Bohater wrog(<span class="str">"Smok"</span>, <span class="num">150</span>, <span class="num">30</span>);
+    
+    <span class="kw">while</span> (gracz.<span class="func">zyje</span>() && wrog.<span class="func">zyje</span>()) {
+        gracz.<span class="func">atakuj</span>(wrog);
+        <span class="kw">if</span> (wrog.<span class="func">zyje</span>()) wrog.<span class="func">atakuj</span>(gracz);
+    }
+    
+    <span class="kw">if</span> (gracz.<span class="func">zyje</span>()) cout << <span class="str">"Wygrał Gracz!"</span> << endl;
+    <span class="kw">else</span> cout << <span class="str">"Wygrał Wróg!"</span> << endl;
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-klasy">1. Klasy i Obiekty</a></li>
+            <li><a href="#sec-konstruktor">2. Konstruktory</a></li>
+            <li><a href="#sec-enkapsulacja">3. Enkapsulacja</a></li>
+            <li><a href="#sec-dziedziczenie">4. Dziedziczenie</a></li>
+            <li><a href="#sec-projekt">5. System Bohaterów</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

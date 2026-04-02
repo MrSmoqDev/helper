@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Zmienne i Typy Danych</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html">⚙️ Składnia</a></li>
+            <li><a href="variables.html" class="active">📦 Zmienne</a></li>
+            <li><a href="control.html">🔀 Kontrola</a></li>
+            <li><a href="functions.html">⚡ Funkcje</a></li>
+            <li><a href="arrays.html">📊 Tablice</a></li>
+            <li><a href="oop.html">🏗️ OOP</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Zmienne i Typy Danych 📦</h1>
+            <p>Podstawowe typy danych, deklaracje zmiennych i konwersje.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-deklaracja">
+            <h3>1. Deklaracja Zmiennych</h3>
+            <p>W C++ musisz zadeklarować typ zmiennej przed użyciem:</p>
+            <pre><code><span class="type">int</span> wiek = <span class="num">25</span>;           <span class="com"># liczba całkowita</span>
+<span class="type">double</span> cena = <span class="num">19.99</span>;       <span class="com"># liczba zmiennoprzecinkowa</span>
+<span class="type">char</span> litera = <span class="str">'A'</span>;          <span class="com"># pojedynczy znak</span>
+<span class="type">bool</span> czyAktywny = <span class="kw">true</span>;     <span class="com"># wartość logiczna</span>
+string imie = <span class="str">"Anna"</span>;       <span class="com"># tekst (wymaga &lt;string&gt;)</span>
+
+<span class="com"># Deklaracja bez wartości początkowej:</span>
+<span class="type">int</span> liczba;
+liczba = <span class="num">10</span>;  <span class="com"># przypisanie później</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-typy">
+            <h3>2. Podstawowe Typy Danych</h3>
+            <table>
+                <tr><th>Typ</th><th>Rozmiar</th><th>Zakres</th><th>Przykład</th></tr>
+                <tr><td><code class="inline">bool</code></td><td>1 bajt</td><td>true/false</td><td><code>true</code></td></tr>
+                <tr><td><code class="inline">char</code></td><td>1 bajt</td><td>-128 do 127</td><td><code>'A'</code></td></tr>
+                <tr><td><code class="inline">int</code></td><td>4 bajty</td><td>-2 mld do 2 mld</td><td><code>42</code></td></tr>
+                <tr><td><code class="inline">float</code></td><td>4 bajty</td><td>~7 cyfr precyzji</td><td><code>3.14f</code></td></tr>
+                <tr><td><code class="inline">double</code></td><td>8 bajtów</td><td>~15 cyfr precyzji</td><td><code>3.14159265</code></td></tr>
+                <tr><td><code class="inline">long long</code></td><td>8 bajtów</td><td>-9×10¹⁸ do 9×10¹⁸</td><td><code>1000000LL</code></td></tr>
+                <tr><td><code class="inline">string</code></td><td>zmienny</td><td>tekst</td><td><code>"Hello"</code></td></tr>
+            </table>
+            <pre><code><span class="type">int</span> a = <span class="num">10</span>;
+<span class="type">float</span> b = <span class="num">3.14</span>;
+<span class="type">double</span> c = <span class="num">3.14159265358979</span>;
+<span class="type">char</span> d = <span class="str">'X'</span>;
+<span class="type">bool</span> e = <span class="kw">false</span>;
+
+cout << <span class="str">"Rozmiar int: "</span> << <span class="kw">sizeof</span>(a) << <span class="str">" bajty"</span> << endl;
+cout << <span class="str">"Rozmiar double: "</span> << <span class="kw">sizeof</span>(c) << <span class="str">" bajty"</span> << endl;</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-konwersje">
+            <h3>3. Konwersje Typów</h3>
+            <pre><code><span class="com"># Konwersja niejawna (automatyczna):</span>
+<span class="type">int</span> a = <span class="num">10</span>;
+<span class="type">double</span> b = a;  <span class="com"># int → double (10.0)</span>
+
+<span class="com"># Konwersja jawna (casting):</span>
+<span class="type">double</span> x = <span class="num">9.99</span>;
+<span class="type">int</span> y = (<span class="type">int</span>)x;  <span class="com"># C-style cast: 9</span>
+<span class="type">int</span> z = <span class="kw">static_cast</span>&lt;<span class="type">int</span>&gt;(x);  <span class="com"># C++ cast: 9</span>
+
+<span class="com"># Uważaj na utratę danych!</span>
+<span class="type">int</span> duza = <span class="num">1000000</span>;
+<span class="type">char</span> mala = (<span class="type">char</span>)duza;  <span class="com"># Przepełnienie!</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-stale">
+            <h3>4. Stałe (const)</h3>
+            <pre><code><span class="com"># Stała - wartość nie może się zmienić:</span>
+<span class="kw">const</span> <span class="type">double</span> PI = <span class="num">3.14159</span>;
+<span class="kw">const</span> <span class="type">int</span> MAX_GRACZY = <span class="num">100</span>;
+
+<span class="com"># Próba zmiany spowoduje błąd kompilacji:</span>
+<span class="com"># PI = 3.14;  # BŁĄD!</span>
+
+<span class="com"># const jest lepsze niż #define:</span>
+<span class="kw">const</span> <span class="type">int</span> PODATEK = <span class="num">23</span>;  <span class="com"># Ma typ, jest widoczne dla debuggera</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-auto">
+            <h3>5. Słowo kluczowe auto (C++11)</h3>
+            <pre><code><span class="com"># Kompilator sam dedukuje typ:</span>
+<span class="kw">auto</span> x = <span class="num">10</span>;         <span class="com"># int</span>
+<span class="kw">auto</span> y = <span class="num">3.14</span>;       <span class="com"># double</span>
+<span class="kw">auto</span> tekst = <span class="str">"Hello"</span>; <span class="com"># const char*</span>
+
+<span class="com"># Przydatne przy złożonych typach:</span>
+vector&lt;map&lt;string, int&gt;&gt; dana;
+<span class="kw">auto</span> iterator = dana.<span class="func">begin</span>();  <span class="com"># Zamiast pisać pełny typ</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>6. 🛠️ Projekt: Kalkulator BMI</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;iomanip&gt;</span>  <span class="com"># do setprecision</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">double</span> wzrost_m, waga_kg;
+    
+    cout << <span class="str">"=== KALKULATOR BMI ==="</span> << endl;
+    cout << <span class="str">"Podaj wzrost (metry): "</span>;
+    cin >> wzrost_m;
+    
+    cout << <span class="str">"Podaj wagę (kg): "</span>;
+    cin >> waga_kg;
+    
+    <span class="type">double</span> bmi = waga_kg / (wzrost_m * wzrost_m);
+    
+    cout << endl << <span class="str">"Twoje BMI: "</span> << <span class="func">fixed</span> << <span class="func">setprecision</span>(<span class="num">2</span>) << bmi << endl;
+    
+    <span class="kw">if</span> (bmi &lt; <span class="num">18.5</span>) {
+        cout << <span class="str">"Status: Niedowaga"</span> << endl;
+    } <span class="kw">else if</span> (bmi &lt; <span class="num">25</span>) {
+        cout << <span class="str">"Status: Waga prawidłowa"</span> << endl;
+    } <span class="kw">else if</span> (bmi &lt; <span class="num">30</span>) {
+        cout << <span class="str">"Status: Nadwaga"</span> << endl;
+    } <span class="kw">else</span> {
+        cout << <span class="str">"Status: Otyłość"</span> << endl;
+    }
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-deklaracja">1. Deklaracja Zmiennych</a></li>
+            <li><a href="#sec-typy">2. Typy Danych</a></li>
+            <li><a href="#sec-konwersje">3. Konwersje Typów</a></li>
+            <li><a href="#sec-stale">4. Stałe (const)</a></li>
+            <li><a href="#sec-auto">5. auto</a></li>
+            <li><a href="#sec-projekt">6. Kalkulator BMI</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

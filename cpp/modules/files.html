@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Obsługa Plików</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400/500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html">⚙️ Składnia</a></li>
+            <li><a href="variables.html">📦 Zmienne</a></li>
+            <li><a href="control.html">🔀 Kontrola</a></li>
+            <li><a href="functions.html">⚡ Funkcje</a></li>
+            <li><a href="arrays.html">📊 Tablice</a></li>
+            <li><a href="oop.html">🏗️ OOP</a></li>
+            <li><a href="files.html" class="active">📁 Pliki</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Obsługa Plików 📁</h1>
+            <p>Zapis i odczyt danych z plików tekstowych przy użyciu fstream.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Biblioteka fstream</h3>
+            <p>Do pracy z plikami potrzebujemy nagłówka <code>&lt;fstream&gt;</code>. Mamy 3 główne klasy:</p>
+            <ul>
+                <li><code class="inline">ofstream</code> – zapis do pliku (output)</li>
+                <li><code class="inline">ifstream</code> – odczyt z pliku (input)</li>
+                <li><code class="inline">fstream</code> – zarówno zapis jak i odczyt</li>
+            </ul>
+        </div>
+
+        <div class="lesson-card" id="sec-zapis">
+            <h3>2. Zapis do Pliku</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;fstream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="com"># Tworzenie pliku do zapisu:</span>
+    ofstream plik(<span class="str">"dane.txt"</span>);
+    
+    <span class="kw">if</span> (plik.<span class="func">is_open</span>()) {
+        plik << <span class="str">"Linia 1"</span> << endl;
+        plik << <span class="str">"Linia 2"</span> << endl;
+        plik << <span class="num">123</span> << endl;
+        plik.<span class="func">close</span>();
+        cout << <span class="str">"Zapisano!"</span> << endl;
+    } <span class="kw">else</span> {
+        cout << <span class="str">"Błąd otwarcia pliku!"</span> << endl;
+    }
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-odczyt">
+            <h3>3. Odczyt z Pliku</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;fstream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">int</span> <span class="func">main</span>() {
+    ifstream plik(<span class="str">"dane.txt"</span>);
+    string linia;
+    
+    <span class="kw">if</span> (plik.<span class="func">is_open</span>()) {
+        <span class="com"># Czytanie linia po linii:</span>
+        <span class="kw">while</span> (<span class="func">getline</span>(plik, linia)) {
+            cout << linia << endl;
+        }
+        plik.<span class="func">close</span>();
+    }
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-dopisywanie">
+            <h3>4. Dopisywanie do Pliku</h3>
+            <p>Domyślnie <code>ofstream</code> nadpisuje plik. Aby dopisywać, użyj flagi <code>ios::app</code>.</p>
+            <pre><code><span class="com"># Dopisywanie (app = append):</span>
+ofstream plik(<span class="str">"log.txt"</span>, ios::app);
+
+plik << <span class="str">"Nowa wpisana linia"</span> << endl;
+plik.<span class="func">close</span>();</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>5. 🛠️ Projekt: Dziennik (Logger)</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;fstream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;ctime&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">void</span> <span class="func">loguj</span>(string wiadomosc) {
+    ofstream plik(<span class="str">"log.txt"</span>, ios::app);
+    <span class="kw">if</span> (plik.<span class="func">is_open</span>()) {
+        time_t teraz = <span class="func">time</span>(<span class="num">0</span>);
+        plik << <span class="func">ctime</span>(&teraz) << <span class="str">": "</span> << wiadomosc << endl;
+        plik.<span class="func">close</span>();
+    }
+}
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="func">loguj</span>(<span class="str">"Program uruchomiony"</span>);
+    
+    string input;
+    cout << <span class="str">"Wpisz wiadomość do logu: "</span>;
+    <span class="func">getline</span>(cin, input);
+    
+    <span class="func">loguj</span>(input);
+    cout << <span class="str">"Zapisano do log.txt"</span> << endl;
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Biblioteka fstream</a></li>
+            <li><a href="#sec-zapis">2. Zapis do Pliku</a></li>
+            <li><a href="#sec-odczyt">3. Odczyt z Pliku</a></li>
+            <li><a href="#sec-dopisywanie">4. Dopisywanie</a></li>
+            <li><a href="#sec-projekt">5. Dziennik (Logger)</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

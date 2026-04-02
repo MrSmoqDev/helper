@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Gra Kółko i Krzyżyk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400/500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html">⚙️ Składnia</a></li>
+            <li><a href="variables.html">📦 Zmienne</a></li>
+            <li><a href="control.html">🔀 Kontrola</a></li>
+            <li><a href="functions.html">⚡ Funkcje</a></li>
+            <li><a href="arrays.html">📊 Tablice</a></li>
+            <li><a href="oop.html">🏗️ OOP</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="game.html" class="active">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Gra: Kółko i Krzyżyk 🎮</h1>
+            <p>Kompletny projekt konsolowy wykorzystujący tablice, pętle i funkcje.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-opis">
+            <h3>1. Opis Projektu</h3>
+            <p>Stworzymy klasyczną grę dla dwóch graczy na planszy 3x3. Projekt wykorzystuje:</p>
+            <ul>
+                <li>✅ Tablicę 2D do przechowywania planszy</li>
+                <li>✅ Pętle do rysowania i sprawdzania</li>
+                <li>✅ Funkcje do modularności kodu</li>
+                <li>✅ Warunki zwycięstwa i remisu</li>
+            </ul>
+        </div>
+
+        <div class="lesson-card" id="sec-kod">
+            <h3>2. Pełny Kod Gry</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">char</span> plansza[<span class="num">3</span>][<span class="num">3</span>] = {
+    {<span class="str">'1'</span>, <span class="str">'2'</span>, <span class="str">'3'</span>},
+    {<span class="str">'4'</span>, <span class="str">'5'</span>, <span class="str">'6'</span>},
+    {<span class="str">'7'</span>, <span class="str">'8'</span>, <span class="str">'9'</span>}
+};
+
+<span class="type">char</span> gracz = <span class="str">'X'</span>;
+
+<span class="type">void</span> <span class="func">rysujPlansze</span>() {
+    cout << <span class="str">"\n"</span>;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++) {
+        cout << <span class="str">" "</span> << plansza[i][<span class="num">0</span>] << <span class="str">" | "</span> << plansza[i][<span class="num">1</span>] << <span class="str">" | "</span> << plansza[i][<span class="num">2</span>] << endl;
+        <span class="kw">if</span> (i &lt; <span class="num">2</span>) cout << <span class="str">"---|---|---"</span> << endl;
+    }
+    cout << <span class="str">"\n"</span>;
+}
+
+<span class="type">void</span> <span class="func">zmianaGracza</span>() {
+    gracz = (gracz == <span class="str">'X'</span>) ? <span class="str">'O'</span> : <span class="str">'X'</span>;
+}
+
+<span class="type">bool</span> <span class="func">sprawdzWygrana</span>() {
+    <span class="com"># Sprawdzenie wierszy i kolumn</span>
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++) {
+        <span class="kw">if</span> (plansza[i][<span class="num">0</span>] == plansza[i][<span class="num">1</span>] && plansza[i][<span class="num">0</span>] == plansza[i][<span class="num">2</span>]) <span class="kw">return</span> <span class="kw">true</span>;
+        <span class="kw">if</span> (plansza[<span class="num">0</span>][i] == plansza[<span class="num">1</span>][i] && plansza[<span class="num">0</span>][i] == plansza[<span class="num">2</span>][i]) <span class="kw">return</span> <span class="kw">true</span>;
+    }
+    <span class="com"># Przekątne</span>
+    <span class="kw">if</span> (plansza[<span class="num">0</span>][<span class="num">0</span>] == plansza[<span class="num">1</span>][<span class="num">1</span>] && plansza[<span class="num">1</span>][<span class="num">1</span>] == plansza[<span class="num">2</span>][<span class="num">2</span>]) <span class="kw">return</span> <span class="kw">true</span>;
+    <span class="kw">if</span> (plansza[<span class="num">0</span>][<span class="num">2</span>] == plansza[<span class="num">1</span>][<span class="num">1</span>] && plansza[<span class="num">1</span>][<span class="num">1</span>] == plansza[<span class="num">2</span>][<span class="num">0</span>]) <span class="kw">return</span> <span class="kw">true</span>;
+    
+    <span class="kw">return</span> <span class="kw">false</span>;
+}
+
+<span class="type">bool</span> <span class="func">sprawdzRemis</span>() {
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">0</span>; i &lt; <span class="num">3</span>; i++) {
+        <span class="kw">for</span> (<span class="type">int</span> j = <span class="num">0</span>; j &lt; <span class="num">3</span>; j++) {
+            <span class="kw">if</span> (plansza[i][j] != <span class="str">'X'</span> && plansza[i][j] != <span class="str">'O'</span>) <span class="kw">return</span> <span class="kw">false</span>;
+        }
+    }
+    <span class="kw">return</span> <span class="kw">true</span>;
+}
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">int</span> ruch;
+    cout << <span class="str">"=== KÓŁKO I KRZYŻYK ==="</span> << endl;
+    
+    <span class="kw">while</span> (<span class="kw">true</span>) {
+        <span class="func">rysujPlansze</span>();
+        cout << <span class="str">"Gracz "</span> << gracz << <span class="str">", podaj numer pola (1-9): "</span>;
+        cin >> ruch;
+        
+        <span class="com"># Konwersja 1-9 na indeksy tablicy</span>
+        <span class="type">int</span> rzad = (ruch - <span class="num">1</span>) / <span class="num">3</span>;
+        <span class="type">int</span> kol = (ruch - <span class="num">1</span>) % <span class="num">3</span>;
+        
+        <span class="kw">if</span> (ruch &lt; <span class="num">1</span> || ruch > <span class="num">9</span> || plansza[rzad][kol] == <span class="str">'X'</span> || plansza[rzad][kol] == <span class="str">'O'</span>) {
+            cout << <span class="str">"Nieprawidłowy ruch! Spróbuj ponownie."</span> << endl;
+            <span class="kw">continue</span>;
+        }
+        
+        plansza[rzad][kol] = gracz;
+        
+        <span class="kw">if</span> (<span class="func">sprawdzWygrana</span>()) {
+            <span class="func">rysujPlansze</span>();
+            cout << <span class="str">"🎉 Gracz "</span> << gracz << <span class="str">" wygrywa!"</span> << endl;
+            <span class="kw">break</span>;
+        }
+        
+        <span class="kw">if</span> (<span class="func">sprawdzRemis</span>()) {
+            <span class="func">rysujPlansze</span>();
+            cout << <span class="str">"🤝 Remis!"</span> << endl;
+            <span class="kw">break</span>;
+        }
+        
+        <span class="func">zmianaGracza</span>();
+    }
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-kompilacja">
+            <h3>3. Jak Uruchomić?</h3>
+            <ol style="margin-left: 20px; line-height: 1.8;">
+                <li>Skopiuj kod do pliku <code>gra.cpp</code>.</li>
+                <li>Otwórz terminal w folderze z plikiem.</li>
+                <li>Skompiluj: <code>g++ -o gra gra.cpp</code></li>
+                <li>Uruchom: <code>./gra</code> (Linux/Mac) lub <code>gra.exe</code> (Windows).</li>
+                <li>Graj wpisując numery pól od 1 do 9.</li>
+            </ol>
+        </div>
+
+        <div class="lesson-card" id="sec-rozszerzenia">
+            <h3>4. Pomysły na Rozszerzenie</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>🤖 Bot</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Dodaj prostą sztuczną inteligencję losującą ruchy.</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>📊 Wyniki</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Zapisz wynik do pliku używając fstream.</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>🎨 Kolory</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Użyj kodów ANSI do kolorowania X i O.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-opis">1. Opis Projektu</a></li>
+            <li><a href="#sec-kod">2. Pełny Kod</a></li>
+            <li><a href="#sec-kompilacja">3. Jak Uruchomić?</a></li>
+            <li><a href="#sec-rozszerzenia">4. Rozszerzenia</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

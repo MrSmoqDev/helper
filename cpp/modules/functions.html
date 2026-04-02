@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Funkcje</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html">⚙️ Składnia</a></li>
+            <li><a href="variables.html">📦 Zmienne</a></li>
+            <li><a href="control.html">🔀 Kontrola</a></li>
+            <li><a href="functions.html" class="active">⚡ Funkcje</a></li>
+            <li><a href="arrays.html">📊 Tablice</a></li>
+            <li><a href="oop.html">🏗️ OOP</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Funkcje ⚡</h1>
+            <p>Deklaracja, definicja, parametry, zwracanie wartości, przeciążanie.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-podstawy">
+            <h3>1. Podstawy Funkcji</h3>
+            <pre><code><span class="com"># Deklaracja (prototyp):</span>
+<span class="type">int</span> <span class="func">dodaj</span>(<span class="type">int</span> a, <span class="type">int</span> b);
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">int</span> wynik = <span class="func">dodaj</span>(<span class="num">5</span>, <span class="num">3</span>);
+    cout << <span class="str">"Wynik: "</span> << wynik << endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}
+
+<span class="com"># Definicja:</span>
+<span class="type">int</span> <span class="func">dodaj</span>(<span class="type">int</span> a, <span class="type">int</span> b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="com"># Funkcja bez wartości zwracanej (void):</span>
+<span class="type">void</span> <span class="func">powitanie</span>() {
+    cout << <span class="str">"Witaj!"</span> << endl;
+}
+
+<span class="func">powitanie</span>();  <span class="out"># Witaj!</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-parametry">
+            <h3>2. Parametry i Zwracanie Wartości</h3>
+            <pre><code><span class="com"># Wiele parametrów:</span>
+<span class="type">double</span> <span class="func">srednia</span>(<span class="type">double</span> a, <span class="type">double</span> b, <span class="type">double</span> c) {
+    <span class="kw">return</span> (a + b + c) / <span class="num">3.0</span>;
+}
+
+<span class="com"># Parametry domyślne:</span>
+<span class="type">void</span> <span class="func">log</span>(string msg, string poziom = <span class="str">"INFO"</span>) {
+    cout << <span class="str">"["</span> << poziom << <span class="str">"] "</span> << msg << endl;
+}
+
+<span class="func">log</span>(<span class="str">"Program startuje"</span>);           <span class="out"># [INFO] Program startuje</span>
+<span class="func">log</span>(<span class="str">"Błąd krytyczny"</span>, <span class="str">"ERROR"</span>);  <span class="out"># [ERROR] Błąd krytyczny</span>
+
+<span class="com"># Przekazywanie przez wartość (kopia):</span>
+<span class="type">void</span> <span class="func">zmien_wartosc</span>(<span class="type">int</span> x) {
+    x = <span class="num">100</span>;  <span class="com"># Zmienia tylko kopię!</span>
+}
+
+<span class="type">int</span> a = <span class="num">5</span>;
+<span class="func">zmien_wartosc</span>(a);
+cout << a;  <span class="out"># 5 (niezmienione)</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-referencje">
+            <h3>3. Przekazywanie przez Referencję</h3>
+            <pre><code><span class="com"># Referencja (&) - zmiana oryginału:</span>
+<span class="type">void</span> <span class="func">zamien</span>(<span class="type">int</span> &a, <span class="type">int</span> &b) {
+    <span class="type">int</span> temp = a;
+    a = b;
+    b = temp;
+}
+
+<span class="type">int</span> x = <span class="num">5</span>, y = <span class="num">10</span>;
+<span class="func">zamien</span>(x, y);
+cout << x << <span class="str">" "</span> << y;  <span class="out"># 10 5</span>
+
+<span class="com"># const reference - bez zmian, ale wydajnie:</span>
+<span class="type">void</span> <span class="func">wyswietl</span>(<span class="kw">const</span> string &tekst) {
+    cout << tekst << endl;
+    <span class="com"># tekst = "zmiana";  # BŁĄD - const!</span>
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-przeciazanie">
+            <h3>4. Przeciążanie Funkcji</h3>
+            <pre><code><span class="com"># Ta sama nazwa, różne parametry:</span>
+<span class="type">int</span> <span class="func">dodaj</span>(<span class="type">int</span> a, <span class="type">int</span> b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="type">double</span> <span class="func">dodaj</span>(<span class="type">double</span> a, <span class="type">double</span> b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="type">int</span> <span class="func">dodaj</span>(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c) {
+    <span class="kw">return</span> a + b + c;
+}
+
+cout << <span class="func">dodaj</span>(<span class="num">2</span>, <span class="num">3</span>) << endl;        <span class="out"># 5 (int)</span>
+cout << <span class="func">dodaj</span>(<span class="num">2.5</span>, <span class="num">3.1</span>) << endl;  <span class="out"># 5.6 (double)</span>
+cout << <span class="func">dodaj</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>) << endl;    <span class="out"># 6 (3 parametry)</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-rekurencja">
+            <h3>5. Rekurencja</h3>
+            <pre><code><span class="com"># Silnia (n!):</span>
+<span class="type">int</span> <span class="func">silnia</span>(<span class="type">int</span> n) {
+    <span class="kw">if</span> (n <= <span class="num">1</span>) <span class="kw">return</span> <span class="num">1</span>;
+    <span class="kw">return</span> n * <span class="func">silnia</span>(n - <span class="num">1</span>);
+}
+
+cout << <span class="func">silnia</span>(<span class="num">5</span>);  <span class="out"># 120 (5*4*3*2*1)</span>
+
+<span class="com"># Ciąg Fibonacciego:</span>
+<span class="type">int</span> <span class="func">fib</span>(<span class="type">int</span> n) {
+    <span class="kw">if</span> (n <= <span class="num">1</span>) <span class="kw">return</span> n;
+    <span class="kw">return</span> <span class="func">fib</span>(n - <span class="num">1</span>) + <span class="func">fib</span>(n - <span class="num">2</span>);
+}
+
+cout << <span class="func">fib</span>(<span class="num">10</span>);  <span class="out"># 55</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>6. 🛠️ Projekt: Kalkulator Naukowy</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;cmath&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">double</span> <span class="func">dodaj</span>(<span class="type">double</span> a, <span class="type">double</span> b) { <span class="kw">return</span> a + b; }
+<span class="type">double</span> <span class="func">odejmij</span>(<span class="type">double</span> a, <span class="type">double</span> b) { <span class="kw">return</span> a - b; }
+<span class="type">double</span> <span class="func">mnoz</span>(<span class="type">double</span> a, <span class="type">double</span> b) { <span class="kw">return</span> a * b; }
+<span class="type">double</span> <span class="func">dziel</span>(<span class="type">double</span> a, <span class="type">double</span> b) {
+    <span class="kw">if</span> (b == <span class="num">0</span>) {
+        cout << <span class="str">"Błąd: Dzielenie przez zero!"</span> << endl;
+        <span class="kw">return</span> <span class="num">0</span>;
+    }
+    <span class="kw">return</span> a / b;
+}
+<span class="type">double</span> <span class="func">potega</span>(<span class="type">double</span> a, <span class="type">double</span> b) { <span class="kw">return</span> <span class="func">pow</span>(a, b); }
+<span class="type">double</span> <span class="func">pierwiastek</span>(<span class="type">double</span> a) { <span class="kw">return</span> <span class="func">sqrt</span>(a); }
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="type">double</span> a, b;
+    <span class="type">int</span> wybor;
+    
+    cout << <span class="str">"=== KALKULATOR NAUKOWY ==="</span> << endl;
+    cout << <span class="str">"1. Dodawanie\n2. Odejmowanie\n3. Mnożenie\n4. Dzielenie\n5. Potęga\n6. Pierwiastek"</span> << endl;
+    cout << <span class="str">"Wybierz: "</span>;
+    cin >> wybor;
+    
+    cout << <span class="str">"Podaj pierwszą liczbę: "</span>;
+    cin >> a;
+    
+    <span class="kw">if</span> (wybor != <span class="num">6</span>) {
+        cout << <span class="str">"Podaj drugą liczbę: "</span>;
+        cin >> b;
+    }
+    
+    <span class="type">double</span> wynik;
+    <span class="kw">switch</span> (wybor) {
+        <span class="kw">case</span> <span class="num">1</span>: wynik = <span class="func">dodaj</span>(a, b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="num">2</span>: wynik = <span class="func">odejmij</span>(a, b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="num">3</span>: wynik = <span class="func">mnoz</span>(a, b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="num">4</span>: wynik = <span class="func">dziel</span>(a, b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="num">5</span>: wynik = <span class="func">potega</span>(a, b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="num">6</span>: wynik = <span class="func">pierwiastek</span>(a); <span class="kw">break</span>;
+        <span class="kw">default</span>: cout << <span class="str">"Nieprawidłowy wybór!"</span>; <span class="kw">return</span> <span class="num">1</span>;
+    }
+    
+    cout << <span class="str">"Wynik: "</span> << wynik << endl;
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-podstawy">1. Podstawy Funkcji</a></li>
+            <li><a href="#sec-parametry">2. Parametry</a></li>
+            <li><a href="#sec-referencje">3. Referencje</a></li>
+            <li><a href="#sec-przeciazanie">4. Przeciążanie</a></li>
+            <li><a href="#sec-rekurencja">5. Rekurencja</a></li>
+            <li><a href="#sec-projekt">6. Kalkulator Naukowy</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

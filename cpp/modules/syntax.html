@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ - Składnia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fas fa-code"></i> C++ Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="syntax.html" class="active">⚙️ Składnia</a></li>
+            <li><a href="variables.html">📦 Zmienne</a></li>
+            <li><a href="control.html">🔀 Kontrola</a></li>
+            <li><a href="functions.html">⚡ Funkcje</a></li>
+            <li><a href="arrays.html">📊 Tablice</a></li>
+            <li><a href="oop.html">🏗️ OOP</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Składnia i Operatory ⚙️</h1>
+            <p>Podstawy składni C++ i wszystkie operatory.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-podstawy">
+            <h3>1. Podstawowa Składnia</h3>
+            <ul>
+                <li>Każda instrukcja kończy się <strong>średnikiem</strong> <code class="inline">;</code></li>
+                <li>Bloki kodu w <strong>nawiasach klamrowych</strong> <code class="inline">{ }</code></li>
+                <li>Wielkość liter <strong>ma znaczenie</strong> (<code>main</code> ≠ <code>Main</code>)</li>
+                <li>Komentarze: <code class="inline">//</code> (jedna linia) lub <code class="inline">/* */</code> (wiele linii)</li>
+            </ul>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">int</span> <span class="func">main</span>() {
+    <span class="com">// Komentarz jednowierszowy</span>
+    cout << <span class="str">"Hello!"</span> << endl;
+    
+    <span class="com">/* Komentarz
+       wielowierszowy */</span>
+    
+    <span class="kw">return</span> <span class="num">0</span>;  <span class="com">// Średnik obowiązkowy!</span>
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-operatory">
+            <h3>2. Operatory Arytmetyczne</h3>
+            <table>
+                <tr><th>Operator</th><th>Nazwa</th><th>Przykład</th><th>Wynik</th></tr>
+                <tr><td><code class="inline">+</code></td><td>Dodawanie</td><td><code>5 + 3</code></td><td><code>8</code></td></tr>
+                <tr><td><code class="inline">-</code></td><td>Odejmowanie</td><td><code>10 - 4</code></td><td><code>6</code></td></tr>
+                <tr><td><code class="inline">*</code></td><td>Mnożenie</td><td><code>6 * 7</code></td><td><code>42</code></td></tr>
+                <tr><td><code class="inline">/</code></td><td>Dzielenie</td><td><code>10 / 3</code></td><td><code>3</code> (int!)</td></tr>
+                <tr><td><code class="inline">%</code></td><td>Modulo (reszta)</td><td><code>10 % 3</code></td><td><code>1</code></td></tr>
+                <tr><td><code class="inline">++</code></td><td>Inkrementacja</td><td><code>x++</code></td><td><code>x = x + 1</code></td></tr>
+                <tr><td><code class="inline">--</code></td><td>Dekrementacja</td><td><code>x--</code></td><td><code>x = x - 1</code></td></tr>
+            </table>
+            <pre><code><span class="type">int</span> a = <span class="num">10</span>, b = <span class="num">3</span>;
+
+cout << a + b << endl;  <span class="out"># 13</span>
+cout << a / b << endl;  <span class="out"># 3 (dzielenie całkowite!)</span>
+cout << a % b << endl;  <span class="out"># 1 (reszta)</span>
+
+<span class="com"># Aby uzyskać float:</span>
+cout << (<span class="type">double</span>)a / b << endl;  <span class="out"># 3.333...</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-porownania">
+            <h3>3. Operatory Porównania</h3>
+            <table>
+                <tr><th>Operator</th><th>Znaczenie</th><th>Przykład</th></tr>
+                <tr><td><code class="inline">==</code></td><td>Równe</td><td><code>5 == 5 → true</code></td></tr>
+                <tr><td><code class="inline">!=</code></td><td>Nierówne</td><td><code>5 != 3 → true</code></td></tr>
+                <tr><td><code class="inline">&gt;</code></td><td>Większe</td><td><code>5 &gt; 3 → true</code></td></tr>
+                <tr><td><code class="inline">&lt;</code></td><td>Mniejsze</td><td><code>5 &lt; 3 → false</code></td></tr>
+                <tr><td><code class="inline">&gt;=</code></td><td>Większe lub równe</td><td><code>5 &gt;= 5 → true</code></td></tr>
+                <tr><td><code class="inline">&lt;=</code></td><td>Mniejsze lub równe</td><td><code>5 &lt;= 3 → false</code></td></tr>
+            </table>
+        </div>
+
+        <div class="lesson-card" id="sec-logiczne">
+            <h3>4. Operatory Logiczne</h3>
+            <table>
+                <tr><th>Operator</th><th>Nazwa</th><th>Przykład</th><th>Wynik</th></tr>
+                <tr><td><code class="inline">&amp;&amp;</code></td><td>AND (i)</td><td><code>true &amp;&amp; false</code></td><td><code>false</code></td></tr>
+                <tr><td><code class="inline">||</code></td><td>OR (lub)</td><td><code>true || false</code></td><td><code>true</code></td></tr>
+                <tr><td><code class="inline">!</code></td><td>NOT (nie)</td><td><code>!true</code></td><td><code>false</code></td></tr>
+            </table>
+            <pre><code><span class="type">int</span> wiek = <span class="num">25</span>;
+<span class="type">bool</span> maPrawo = <span class="kw">true</span>;
+
+<span class="com"># Czy może prowadzić? (wiek &gt;= 18 I ma prawo)</span>
+<span class="kw">if</span> (wiek >= <span class="num">18</span> &amp;&amp; maPrawo) {
+    cout << <span class="str">"Może prowadzić"</span> << endl;
+}
+
+<span class="com"># Czy jest dzieckiem LUB seniorem?</span>
+<span class="kw">if</span> (wiek &lt; <span class="num">18</span> || wiek > <span class="num">65</span>) {
+    cout << <span class="str">"Ulga!"</span> << endl;
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-wejscie">
+            <h3>5. Wejście od Użytkownika (cin)</h3>
+            <pre><code><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span>
+<span class="kw">#include</span> <span class="str">&lt;string&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="type">int</span> <span class="func">main</span>() {
+    string imie;
+    <span class="type">int</span> wiek;
+    
+    cout << <span class="str">"Podaj imię: "</span>;
+    cin >> imie;  <span class="com"># cin odczytuje do pierwszej spacji!</span>
+    
+    cout << <span class="str">"Podaj wiek: "</span>;
+    cin >> wiek;
+    
+    cout << <span class="str">"Cześć "</span> << imie << <span class="str">", masz "</span> << wiek << <span class="str">" lat!"</span> << endl;
+    
+    <span class="com"># Dla całych linii użyj getline:</span>
+    <span class="type">string</span> pelneImie;
+    cout << <span class="str">"Podaj pełne imię: "</span>;
+    <span class="func">getline</span>(cin, pelneImie);  <span class="com"># Czyta całą linię ze spacjami</span>
+    
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-podstawy">1. Podstawowa Składnia</a></li>
+            <li><a href="#sec-operatory">2. Operatory Arytmetyczne</a></li>
+            <li><a href="#sec-porownania">3. Operatory Porównania</a></li>
+            <li><a href="#sec-logiczne">4. Operatory Logiczne</a></li>
+            <li><a href="#sec-wejscie">5. Wejście (cin)</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
