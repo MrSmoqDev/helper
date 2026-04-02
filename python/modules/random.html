@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Moduł Random</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html" class="active">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <h1>Moduł Random 🎲</h1>
+            <p>Losowość w Pythonie – od prostych liczb po zaawansowane symulacje.</p>
+        </header>
+
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Wstęp do losowości</h3>
+            <p>Moduł <code class="inline">random</code> generuje liczby pseudolosowe – czyli takie, które <em>wyglądają</em> na losowe, ale są deterministyczne (można je powtórzyć z tym samym seedem).</p>
+            <pre><code><span class="kw">import</span> random  <span class="com"># Zawsze na początku!</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-podstawy">
+            <h3>2. Podstawowe Funkcje</h3>
+            <table>
+                <tr><th>Funkcja</th><th>Opis</th><th>Przykład</th></tr>
+                <tr><td><code class="inline">random.random()</code></td><td>Liczba float 0.0–1.0</td><td><code>0.374...</code></td></tr>
+                <tr><td><code class="inline">random.randint(a,b)</code></td><td>Liczba int z zakresu [a,b]</td><td><code>randint(1,6) → 4</code></td></tr>
+                <tr><td><code class="inline">random.uniform(a,b)</code></td><td>Liczba float z zakresu [a,b]</td><td><code>uniform(1.5, 3.5) → 2.71</code></td></tr>
+                <tr><td><code class="inline">random.choice(seq)</code></td><td>Losuje 1 element z sekwencji</td><td><code>choice(["A","B"]) → "B"</code></td></tr>
+                <tr><td><code class="inline">random.shuffle(lst)</code></td><td>Miesza listę <strong>w miejscu</strong></td><td><code>shuffle([1,2,3]) → [3,1,2]</code></td></tr>
+            </table>
+            <pre><code><span class="kw">import</span> random
+
+<span class="kw">print</span>(<span class="func">random.random</span>())          <span class="out"># 0.847...</span>
+<span class="kw">print</span>(<span class="func">random.randint</span>(<span class="num">1</span>, <span class="num">10</span>))    <span class="out"># 7</span>
+<span class="kw">print</span>(<span class="func">random.choice</span>([<span class="str">"tak"</span>, <span class="str">"nie"</span>]))  <span class="out"># "nie"</span>
+
+kolory = [<span class="str">"czerwony"</span>, <span class="str">"zielony"</span>, <span class="str">"niebieski"</span>]
+<span class="func">random.shuffle</span>(kolory)
+<span class="kw">print</span>(kolory)  <span class="out"># np. ['niebieski', 'czerwony', 'zielony']</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-choices">
+            <h3>3. Losowanie z Wagami (choices)</h3>
+            <p><span class="func">random.choices()</span> pozwala przypisać prawdopodobieństwo każdemu elementowi – idealne do dropów w grach!</p>
+            <pre><code><span class="kw">import</span> random
+
+przedmioty = [<span class="str">"miecz"</span>, <span class="str">"tarcza"</span>, <span class="str">"eliksir"</span>, <span class="str">"legendarny_klejnot"</span>]
+wagi = [<span class="num">50</span>, <span class="num">30</span>, <span class="num">19</span>, <span class="num">1</span>]  <span class="com"># Legendarny dropuje w 1%!</span>
+
+drop = <span class="func">random.choices</span>(przedmioty, weights=wagi, k=<span class="num">1</span>)[<span class="num">0</span>]
+<span class="kw">print</span>(<span class="str">f"🎁 Dropnął: {drop}"</span>)
+
+<span class="com"># Losuj 5 razy</span>
+wyniki = <span class="func">random.choices</span>(przedmioty, weights=wagi, k=<span class="num">5</span>)
+<span class="kw">print</span>(wyniki)</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-seed">
+            <h3>4. Seed – Powtarzalna Losowość</h3>
+            <p><span class="func">random.seed()</span> ustawia początek generatora. Przydatne do testów i debugowania.</p>
+            <pre><code><span class="kw">import</span> random
+
+<span class="func">random.seed</span>(<span class="num">42</span>)  <span class="com"># Ustawiamy seed</span>
+<span class="kw">print</span>(<span class="func">random.randint</span>(<span class="num">1</span>, <span class="num">100</span>))  <span class="out"># ZAWSZE 82</span>
+<span class="kw">print</span>(<span class="func">random.randint</span>(<span class="num">1</span>, <span class="num">100</span>))  <span class="out"># ZAWSZE 15</span>
+
+<span class="com"># Bez seeda – za każdym razem inny wynik</span>
+<span class="func">random.seed</span>()  <span class="com"># Reset do losowego seeda</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>5. 🎁 Projekt: Generator Haseł</h3>
+            <p>Połączmy `random`, `string` i pętle, żeby stworzyć generator mocnych haseł.</p>
+            <pre><code><span class="kw">import</span> random
+<span class="kw">import</span> string
+
+<span class="kw">def</span> <span class="func">generuj_haslo</span>(dlugosc=<span class="num">12</span>, uzyj_specjalnych=<span class="kw">True</span>):
+    <span class="str">"""Generuje losowe, mocne hasło"""</span>
+    znaki = string.ascii_letters + string.digits
+    <span class="kw">if</span> uzyj_specjalnych:
+        znaki += string.punctuation
+    
+    haslo = <span class="str">""</span>
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="func">range</span>(dlugosc):
+        haslo += <span class="func">random.choice</span>(znaki)
+    
+    <span class="kw">return</span> haslo
+
+<span class="com"># Użycie</span>
+<span class="kw">print</span>(<span class="str">"🔐 Twoje hasło:"</span>, <span class="func">generuj_haslo</span>())
+<span class="kw">print</span>(<span class="str">"🔐 Krótkie hasło:"</span>, <span class="func">generuj_haslo</span>(dlugosc=<span class="num">8</span>, uzyj_specjalnych=<span class="kw">False</span>))</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga Random</h3>
+            <table>
+                <tr><th>Funkcja</th><th>Zwraca</th><th>Przykład</th></tr>
+                <tr><td><code>random()</code></td><td>float 0.0–1.0</td><td><code>0.732</code></td></tr>
+                <tr><td><code>randint(a,b)</code></td><td>int [a,b]</td><td><code>randint(1,6)</code></td></tr>
+                <tr><td><code>choice(seq)</code></td><td>1 element</td><td><code>choice(["A","B"])</code></td></tr>
+                <tr><td><code>choices(seq, k=n)</code></td><td>lista n elementów</td><td><code>choices([1,2], k=3)</code></td></tr>
+                <tr><td><code>shuffle(lst)</code></td><td>None (miesza w miejscu)</td><td><code>shuffle(moja_lista)</code></td></tr>
+                <tr><td><code>seed(x)</code></td><td>None (ustawia generator)</td><td><code>seed(123)</code></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Wstęp</a></li>
+            <li><a href="#sec-podstawy">2. Podstawowe Funkcje</a></li>
+            <li><a href="#sec-choices">3. Losowanie z Wagami</a></li>
+            <li><a href="#sec-seed">4. Seed</a></li>
+            <li><a href="#sec-projekt">5. Generator Haseł</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

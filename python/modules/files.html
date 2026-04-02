@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Praca z Plikami</title>
+    <!-- Czcionki i Ikony -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Wspólny arkusz stylów -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- LEWY SIDEBAR (Nawigacja) -->
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp i Ogólne</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html" class="active">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót do Menu</a>
+        </div>
+    </nav>
+
+    <!-- GŁÓWNA TREŚĆ -->
+    <div class="main-content">
+        <header>
+            <h1>Praca z Plikami 📁</h1>
+            <p>Naucz się zapisywać, odczytywać i przetwarzać dane z plików tekstowych.</p>
+        </header>
+
+        <!-- Sekcja 1 -->
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Dlaczego pliki są ważne?</h3>
+            <p>Zmienne w Pythonie są tymczasowe – znikają po zamknięciu programu. Pliki pozwalają <strong>trwale zapisać dane</strong>, które możesz wczytać później. To podstawa tworzenia:</p>
+            <ul>
+                <li>✅ Dzienników (logów) z działania programu</li>
+                <li>✅ Zapisów stanu gry (save'y)</li>
+                <li>✅ Konfiguracji aplikacji</li>
+                <li>✅ Eksportu danych (raporty, listy)</li>
+            </ul>
+        </div>
+
+        <!-- Sekcja 2 -->
+        <div class="lesson-card" id="sec-tryby">
+            <h3>2. Tryby Otwierania Plików</h3>
+            <p>Przed pracą z plikiem musisz określić, co chcesz z nim zrobić. Oto najważniejsze tryby:</p>
+            
+            <table>
+                <tr>
+                    <th>Tryb</th>
+                    <th>Nazwa</th>
+                    <th>Opis</th>
+                    <th>Ryzyko</th>
+                </tr>
+                <tr>
+                    <td><code class="inline">"r"</code></td>
+                    <td>Read (Odczyt)</td>
+                    <td>Tylko czytanie. Plik musi istnieć.</td>
+                    <td>❌ Błąd jeśli brak pliku</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">"w"</code></td>
+                    <td>Write (Zapis)</td>
+                    <td>Zapis (nadpisuje!). Tworzy plik jeśli nie ma.</td>
+                    <td>⚠️ <strong>Kasuje całą zawartość!</strong></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">"a"</code></td>
+                    <td>Append (Dopisz)</td>
+                    <td>Dopisuje na końcu pliku. Nie kasuje danych.</td>
+                    <td>✅ Bezpieczny</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">"r+"</code></td>
+                    <td>Read+Write</td>
+                    <td>Odczyt i zapis jednocześnie.</td>
+                    <td>⚠️ Wymaga ostrożności</td>
+                </tr>
+            </table>
+
+            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-top: 20px; border-radius: 5px;">
+                <strong>⚠️ UWAGA:</strong> Tryb <code>"w"</code> jest niebezpieczny! Jeśli otworzysz istniejący plik w tym trybie, <strong>cała jego zawartość zostanie natychmiast usunięta</strong>.
+            </div>
+        </div>
+
+        <!-- Sekcja 3 -->
+        <div class="lesson-card" id="sec-with">
+            <h3>3. Instrukcja <code>with</code> (Best Practice)</h3>
+            <p>Nigdy nie używaj samego <code>open()</code> bez <code>close()</code>. Najbezpieczniejszą metodą jest użycie menedżera kontekstu <code>with</code>.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div style="background: #ffebee; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #c62828; margin-bottom: 10px;">❌ ŹLE (Stara metoda)</h4>
+                    <pre style="margin: 0; font-size: 0.85rem;"><code>f = <span class="func">open</span>(<span class="str">"plik.txt"</span>, <span class="str">"r"</span>)
+dane = f.<span class="func">read</span>()
+f.<span class="func">close</span>()  <span class="com"># Możesz zapomnieć!</span></code></pre>
+                </div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #2e7d32; margin-bottom: 10px;">✅ DOBRZE (Menedżer)</h4>
+                    <pre style="margin: 0; font-size: 0.85rem;"><code><span class="kw">with</span> <span class="func">open</span>(<span class="str">"plik.txt"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
+    dane = f.<span class="func">read</span>()
+<span class="com"># Plik zamyka się sam!</span></code></pre>
+                </div>
+            </div>
+
+            <p style="margin-top: 15px;"><strong>Zalety <code>with</code>:</strong></p>
+            <ul>
+                <li>Plik zamyka się automatycznie (nawet przy błędzie)</li>
+                <li>Kod jest krótszy i czytelniejszy</li>
+                <li>Mniejsze ryzyko wycieku pamięci</li>
+            </ul>
+        </div>
+
+        <!-- Sekcja 4 -->
+        <div class="lesson-card" id="sec-zapis">
+            <h3>4. Zapisywanie do Pliku</h3>
+            <p>Używamy trybu <code>"w"</code> (nadpisz) lub <code>"a"</code> (dopisz). Pamiętaj o znakach nowej linii <code>\n</code>.</p>
+            
+            <pre><code><span class="com"># --- Zapis (nadpisanie) ---</span>
+<span class="kw">with</span> <span class="func">open</span>(<span class="str">"notatki.txt"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> plik:
+    plik.<span class="func">write</span>(<span class="str">"Pierwsza linia\n"</span>)
+    plik.<span class="func">write</span>(<span class="str">"Druga linia\n"</span>)
+    <span class="com"># \n to znak nowej linii (Enter)</span>
+
+<span class="com"># --- Dopisywanie (bezpieczne) ---</span>
+<span class="kw">with</span> <span class="func">open</span>(<span class="str">"notatki.txt"</span>, <span class="str">"a"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> plik:
+    plik.<span class="func">write</span>(<span class="str">"Trzecia linia (dopisana)\n"</span>)
+    <span class="com"># Poprzednie dane zostają!</span></code></pre>
+
+            <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; margin-top: 15px; border-radius: 5px;">
+                <strong>💡 encoding="utf-8":</strong> Zawsze dodawaj ten parametr, jeśli używasz polskich znaków (ą, ę, ś, ć). Bez tego możesz dostać krzaczki zamiast tekstu.
+            </div>
+        </div>
+
+        <!-- Sekcja 5 -->
+        <div class="lesson-card" id="sec-odczyt">
+            <h3>5. Odczytywanie z Pliku</h3>
+            <p>Masz trzy główne metody czytania zawartości pliku:</p>
+
+            <table>
+                <tr>
+                    <th>Metoda</th>
+                    <th>Opis</th>
+                    <th>Zwraca</th>
+                </tr>
+                <tr>
+                    <td><code class="inline">read()</code></td>
+                    <td>Czyta cały plik naraz</td>
+                    <td>Jeden długi string</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">readline()</code></td>
+                    <td>Czyta jedną linię</td>
+                    <td>String (jedna linia)</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">readlines()</code></td>
+                    <td>Czyta wszystkie linie</td>
+                    <td>Lista stringów</td>
+                </tr>
+            </table>
+
+            <pre><code><span class="com"># --- Metoda 1: Cały plik ---</span>
+<span class="kw">with</span> <span class="func">open</span>(<span class="str">"notatki.txt"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    calosc = f.<span class="func">read</span>()
+    <span class="kw">print</span>(calosc)
+
+<span class="com"># --- Metoda 2: Linia po linii (najlepsza dla dużych plików) ---</span>
+<span class="kw">with</span> <span class="func">open</span>(<span class="str">"notatki.txt"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    <span class="kw">for</span> linia <span class="kw">in</span> f:
+        <span class="kw">print</span>(linia.<span class="func">strip</span>())  <span class="com"># .strip() usuwa \n z końca</span>
+
+<span class="com"># --- Metoda 3: Do listy ---</span>
+<span class="kw">with</span> <span class="func">open</span>(<span class="str">"notatki.txt"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    lista = f.<span class="func">readlines</span>()
+    <span class="kw">print</span>(lista[<span class="num">0</span>])  <span class="com"># Pierwsza linia</span></code></pre>
+        </div>
+
+        <!-- Sekcja 6 -->
+        <div class="lesson-card" id="sec-przyklad">
+            <h3>6. Praktyczny Przykład: Dziennik (Logger)</h3>
+            <p>Stwórzmy prosty system logowania zdarzeń do pliku. Każde uruchomienie programu dopisze nową linię z datą.</p>
+            
+            <pre><code><span class="kw">import</span> time
+
+<span class="kw">def</span> <span class="func">zapisz_log</span>(wiadomosc):
+    <span class="str">"""Dopisuje wiadomość do pliku log.txt z datą"""</span>
+    timestamp = <span class="func">time.strftime</span>(<span class="str">"%Y-%m-%d %H:%M:%S"</span>)
+    
+    <span class="kw">with</span> <span class="func">open</span>(<span class="str">"log.txt"</span>, <span class="str">"a"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> plik:
+        plik.<span class="func">write</span>(<span class="str">f"[{timestamp}] {wiadomosc}\n"</span>)
+    
+    <span class="kw">print</span>(<span class="str">"✓ Zapisano do log.txt"</span>)
+
+<span class="kw">def</span> <span class="func">wczytaj_log</span>():
+    <span class="str">"""Wyświetla całą zawartość logu"""</span>
+    <span class="kw">try</span>:
+        <span class="kw">with</span> <span class="func">open</span>(<span class="str">"log.txt"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> plik:
+            <span class="kw">print</span>(<span class="str">"\n=== ZAWARTOŚĆ LOGU ==="</span>)
+            <span class="kw">print</span>(plik.<span class="func">read</span>())
+    <span class="kw">except</span> <span class="func">FileNotFoundError</span>:
+        <span class="kw">print</span>(<span class="str">"❌ Plik log.txt nie istnieje jeszcze."</span>)
+
+<span class="com"># --- Test ---</span>
+<span class="func">zapisz_log</span>(<span class="str">"Program został uruchomiony"</span>)
+<span class="func">zapisz_log</span>(<span class="str">"Użytkownik kliknąc przycisk"</span>)
+<span class="func">wczytaj_log</span>()</code></pre>
+
+            <p><strong>Wynik w pliku <code>log.txt</code>:</strong></p>
+            <pre><code>[2024-01-15 10:30:00] Program został uruchomiony
+[2024-01-15 10:30:05] Użytkownik kliknąc przycisk</code></pre>
+        </div>
+
+        <!-- Sekcja 7 -->
+        <div class="lesson-card" id="sec-gra-save">
+            <h3>7. Zastosowanie: Zapis Gry (Save/Load)</h3>
+            <p>Oto jak możesz zapisać postęp gracza do pliku i wczytać go później:</p>
+            
+            <pre><code><span class="kw">def</span> <span class="func">zapisz_gre</span>(imie, poziom, punkty):
+    <span class="str">"""Zapisuje stan gry do pliku"""</span>
+    <span class="kw">with</span> <span class="func">open</span>(<span class="str">"save.txt"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+        f.<span class="func">write</span>(<span class="str">f"{imie}\n{poziom}\n{punkty}\n"</span>)
+    <span class="kw">print</span>(<span class="str">"💾 Gra zapisana!"</span>)
+
+<span class="kw">def</span> <span class="func">wczytaj_gre</span>():
+    <span class="str">"""Wczytuje stan gry z pliku"""</span>
+    <span class="kw">try</span>:
+        <span class="kw">with</span> <span class="func">open</span>(<span class="str">"save.txt"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+            linie = f.<span class="func">readlines</span>()
+            imie = linie[<span class="num">0</span>].<span class="func">strip</span>()
+            poziom = <span class="func">int</span>(linie[<span class="num">1</span>].<span class="func">strip</span>())
+            punkty = <span class="func">int</span>(linie[<span class="num">2</span>].<span class="func">strip</span>())
+            <span class="kw">return</span> imie, poziom, punkty
+    <span class="kw">except</span>:
+        <span class="kw">return</span> <span class="kw">None</span>
+
+<span class="com"># Użycie</span>
+<span class="func">zapisz_gre</span>(<span class="str">"Jan"</span>, <span class="num">5</span>, <span class="num">1500</span>)
+dane = <span class="func">wczytaj_gre</span>()
+<span class="kw">if</span> dane:
+    <span class="kw">print</span>(<span class="str">f"Gracz: {dane[0]}, Poziom: {dane[1]}"</span>)</code></pre>
+        </div>
+
+        <!-- Sekcja 8 -->
+        <div class="lesson-card" id="sec-bledy">
+            <h3>8. Obsługa Błędów przy Plikach</h3>
+            <p>Najczęstsze błędy i jak ich unikać:</p>
+            
+            <table>
+                <tr>
+                    <th>Błąd</th>
+                    <th>Przyczyna</th>
+                    <th>Rozwiązanie</th>
+                </tr>
+                <tr>
+                    <td><code>FileNotFoundError</code></td>
+                    <td>Plik nie istnieje (tryb "r")</td>
+                    <td><code>try-except</code> lub sprawdź przed otwarciem</td>
+                </tr>
+                <tr>
+                    <td><code>PermissionError</code></td>
+                    <td>Brak uprawnień do pliku</td>
+                    <td>Sprawdź czy plik nie jest otwarty w innym programie</td>
+                </tr>
+                <tr>
+                    <td><code>UnicodeDecodeError</code></td>
+                    <td>Problem z kodowaniem znaków</td>
+                    <td>Zawsze używaj <code>encoding="utf-8"</code></td>
+                </tr>
+            </table>
+
+            <pre><code><span class="kw">try</span>:
+    <span class="kw">with</span> <span class="func">open</span>(<span class="str">"dane.txt"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+        dane = f.<span class="func">read</span>()
+<span class="kw">except</span> <span class="func">FileNotFoundError</span>:
+    <span class="kw">print</span>(<span class="str">"❌ Plik nie istnieje. Tworzę nowy..."</span>)
+    <span class="kw">with</span> <span class="func">open</span>(<span class="str">"dane.txt"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+        f.<span class="func">write</span>(<span class="str">""</span>)
+<span class="kw">except</span> <span class="func">PermissionError</span>:
+    <span class="kw">print</span>(<span class="str">"❌ Brak uprawnień do pliku!"</span>)</code></pre>
+        </div>
+
+        <!-- Sekcja 9 -->
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga - Praca z Plikami</h3>
+            <table>
+                <tr>
+                    <th>Funkcja</th>
+                    <th>Opis</th>
+                    <th>Przykład</th>
+                </tr>
+                <tr>
+                    <td><code>open("f.txt", "r")</code></td>
+                    <td>Otwiera do odczytu</td>
+                    <td><code>with open(...) as f:</code></td>
+                </tr>
+                <tr>
+                    <td><code>open("f.txt", "w")</code></td>
+                    <td>Otwiera do zapisu (kasuje!)</td>
+                    <td><code>with open(...) as f:</code></td>
+                </tr>
+                <tr>
+                    <td><code>open("f.txt", "a")</code></td>
+                    <td>Otwiera do dopisania</td>
+                    <td><code>with open(...) as f:</code></td>
+                </tr>
+                <tr>
+                    <td><code>f.write("tekst")</code></td>
+                    <td>Zapisuje tekst</td>
+                    <td><code>f.write("Hello\n")</code></td>
+                </tr>
+                <tr>
+                    <td><code>f.read()</code></td>
+                    <td>Czyta cały plik</td>
+                    <td><code>tekst = f.read()</code></td>
+                </tr>
+                <tr>
+                    <td><code>f.readlines()</code></td>
+                    <td>Czyta linie do listy</td>
+                    <td><code>linie = f.readlines()</code></td>
+                </tr>
+                <tr>
+                    <td><code>.strip()</code></td>
+                    <td>Usuwa białe znaki i \n</td>
+                    <td><code>linia.strip()</code></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- PRAWY SIDEBAR (Spis Treści) -->
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Dlaczego pliki?</a></li>
+            <li><a href="#sec-tryby">2. Tryby Plików</a></li>
+            <li><a href="#sec-with">3. Instrukcja with</a></li>
+            <li><a href="#sec-zapis">4. Zapisywanie</a></li>
+            <li><a href="#sec-odczyt">5. Odczytywanie</a></li>
+            <li><a href="#sec-przyklad">6. Przykład: Logger</a></li>
+            <li><a href="#sec-gra-save">7. Zapis Gry</a></li>
+            <li><a href="#sec-bledy">8. Obsługa Błędów</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - JSON i Konfiguracje</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html" class="active">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home"><a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót</a></div>
+    </nav>
+
+    <div class="main-content">
+        <header><h1>JSON i Konfiguracje 📦</h1><p>Zapisywanie i wczytywanie danych w formacie JSON – idealne do configów, save'ów i API.</p></header>
+
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Czym jest JSON?</h3>
+            <p><strong>JSON</strong> (JavaScript Object Notation) to lekki format wymiany danych. Wygląda jak słownik Pythona, ale jest tekstem – dzięki czemu łatwo go zapisać do pliku lub wysłać przez internet.</p>
+            <pre><code><span class="com"># Przykład JSON (jako tekst)</span>
+{
+  <span class="str">"gracz"</span>: <span class="str">"Jan"</span>,
+  <span class="str">"poziom"</span>: <span class="num">15</span>,
+  <span class="str">"ekwipunek"</span>: [<span class="str">"miecz"</span>, <span class="str">"tarcza"</span>],
+  <span class="str">"aktywny"</span>: <span class="kw">true</span>
+}</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-modul">
+            <h3>2. Moduł <code>json</code> – Podstawy</h3>
+            <p>Python ma wbudowany moduł <code>json</code> do konwersji między obiektami Pythona a JSON-em.</p>
+            <table>
+                <tr><th>Funkcja</th><th>Opis</th><th>Przykład</th></tr>
+                <tr><td><code>json.dumps(obj)</code></td><td>Python → JSON (string)</td><td><code>dumps({"a":1}) → '{"a": 1}'</code></td></tr>
+                <tr><td><code>json.loads(str)</code></td><td>JSON (string) → Python</td><td><code>loads('{"a":1}') → {"a":1}</code></td></tr>
+                <tr><td><code>json.dump(obj, f)</code></td><td>Zapisz JSON do pliku</td><td><code>dump(data, open("f.json","w"))</code></td></tr>
+                <tr><td><code>json.load(f)</code></td><td>Wczytaj JSON z pliku</td><td><code>load(open("f.json"))</code></td></tr>
+            </table>
+            <pre><code><span class="kw">import</span> json
+
+<span class="com"># Python → JSON (string)</span>
+dane = {<span class="str">"imie"</span>: <span class="str">"Anna"</span>, <span class="str">"wiek"</span>: <span class="num">25</span>, <span class="str">"aktywna"</span>: <span class="kw">True</span>}
+json_str = json.<span class="func">dumps</span>(dane, ensure_ascii=<span class="kw">False</span>, indent=<span class="num">2</span>)
+<span class="kw">print</span>(json_str)
+
+<span class="com"># JSON (string) → Python</span>
+wczytane = json.<span class="func">loads</span>(json_str)
+<span class="kw">print</span>(wczytane[<span class="str">"imie"</span>])  <span class="out"># "Anna"</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-pliki">
+            <h3>3. Zapis i Odczyt z Pliku</h3>
+            <pre><code><span class="kw">import</span> json
+
+<span class="com"># --- ZAPIS ---</span>
+konfiguracja = {
+    <span class="str">"nazwa_gry"</span>: <span class="str">"Moja Przygoda"</span>,
+    <span class="str">"glosnosc"</span>: <span class="num">0.7</span>,
+    <span class="str">"trudnosc"</span>: <span class="str">"średnia"</span>,
+    <span class="str">"ostatni_zapis"</span>: <span class="str">"2024-01-15"</span>
+}
+
+<span class="kw">with</span> <span class="func">open</span>(<span class="str">"config.json"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    json.<span class="func">dump</span>(konfiguracja, f, ensure_ascii=<span class="kw">False</span>, indent=<span class="num">2</span>)
+<span class="kw">print</span>(<span class="str">"✅ Zapisano config.json"</span>)
+
+<span class="com"># --- ODCZYT ---</span>
+<span class="kw">try</span>:
+    <span class="kw">with</span> <span class="func">open</span>(<span class="str">"config.json"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+        wczytany_config = json.<span class="func">load</span>(f)
+    <span class="kw">print</span>(<span class="str">f"🎮 Gra: {wczytany_config['nazwa_gry']}"</span>)
+    <span class="kw">print</span>(<span class="str">f"🔊 Głośność: {wczytany_config['glosnosc']*100:.0f}%"</span>)
+<span class="kw">except</span> <span class="func">FileNotFoundError</span>:
+    <span class="kw">print</span>(<span class="str">"❌ Brak pliku config.json – używam domyślnych"</span>)</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>4. 🛠️ Projekt: Menedżer Ustawień</h3>
+            <pre><code><span class="kw">import</span> json
+<span class="kw">import</span> os
+
+PLIK_CONFIG = <span class="str">"ustawienia.json"</span>
+
+<span class="kw">def</span> <span class="func">wczytaj_ustawienia</span>():
+    <span class="str">"""Wczytuje ustawienia z pliku lub zwraca domyślne"""</span>
+    domyslne = {
+        <span class="str">"jezyk"</span>: <span class="str">"pl"</span>,
+        <span class="str">"tryb_ciemny"</span>: <span class="kw">True</span>,
+        <span class="str">"powiadomienia"</span>: <span class="kw">True</span>,
+        <span class="str">"wersja"</span>: <span class="str">"1.0"</span>
+    }
+    
+    <span class="kw">if</span> <span class="kw">not</span> os.<span class="func">path</span>.<span class="func">exists</span>(PLIK_CONFIG):
+        <span class="func">zapisz_ustawienia</span>(domyslne)
+        <span class="kw">return</span> domyslne
+    
+    <span class="kw">with</span> <span class="func">open</span>(PLIK_CONFIG, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+        <span class="kw">return</span> json.<span class="func">load</span>(f)
+
+<span class="kw">def</span> <span class="func">zapisz_ustawienia</span>(ust):
+    <span class="str">"""Zapisuje ustawienia do pliku"""</span>
+    <span class="kw">with</span> <span class="func">open</span>(PLIK_CONFIG, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+        json.<span class="func">dump</span>(ust, f, ensure_ascii=<span class="kw">False</span>, indent=<span class="num">2</span>)
+
+<span class="kw">def</span> <span class="func">zmien_ustawienie</span>(klucz, wartosc):
+    <span class="str">"""Zmienia pojedyncze ustawienie i zapisuje"""</span>
+    ust = <span class="func">wczytaj_ustawienia</span>()
+    ust[klucz] = wartosc
+    <span class="func">zapisz_ustawienia</span>(ust)
+    <span class="kw">print</span>(<span class="str">f"✅ {klucz} = {wartosc}"</span>)
+
+<span class="com"># Demo</span>
+ust = <span class="func">wczytaj_ustawienia</span>()
+<span class="kw">print</span>(<span class="str">f"🌐 Język: {ust['jezyk']}"</span>)
+<span class="func">zmien_ustawienie</span>(<span class="str">"glosnosc"</span>, <span class="num">0.8</span>)
+<span class="kw">print</span>(<span class="str">"✅ Gotowe!"</span>)</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-api">
+            <h3>5. JSON a API – Przykład</h3>
+            <p>Większość API internetowych zwraca dane w JSON. Oto jak to wygląda w praktyce:</p>
+            <pre><code><span class="kw">import</span> json
+
+<span class="com"># Symulacja odpowiedzi z API</span>
+odpowiedz_api = <span class="str">'''
+{
+  "status": "success",
+  "data": {
+    "users": [
+      {"id": 1, "name": "Anna"},
+      {"id": 2, "name": "Jan"}
+    ],
+    "count": 2
+  }
+}
+'''</span>
+
+<span class="com"># Parsujemy JSON</span>
+dane = json.<span class="func">loads</span>(odpowiedz_api)
+
+<span class="com"># Pracujemy na danych</span>
+<span class="kw">if</span> dane[<span class="str">"status"</span>] == <span class="str">"success"</span>:
+    <span class="kw">for</span> user <span class="kw">in</span> dane[<span class="str">"data"</span>][<span class="str">"users"</span>]:
+        <span class="kw">print</span>(<span class="str">f"👤 {user['id']}: {user['name']}"</span>)</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga JSON</h3>
+            <table>
+                <tr><th>Funkcja</th><th>Kierunek</th><th>Uwagi</th></tr>
+                <tr><td><code>dumps(obj)</code></td><td>Python → str</td><td><code>ensure_ascii=False</code> dla polskich znaków</td></tr>
+                <tr><td><code>loads(str)</code></td><td>str → Python</td><td>Wymaga poprawnego JSON-a</td></tr>
+                <tr><td><code>dump(obj, f)</code></td><td>Python → plik</td><td><code>indent=2</code> dla czytelności</td></tr>
+                <tr><td><code>load(f)</code></td><td>plik → Python</td><td>Zawsze używaj <code>with open()</code></td></tr>
+            </table>
+            <p style="margin-top:15px"><strong>Typy Python → JSON:</strong></p>
+            <ul style="margin-left:20px">
+                <li><code>dict</code> → <code>{}</code></li>
+                <li><code>list/tuple</code> → <code>[]</code></li>
+                <li><code>str</code> → <code>"tekst"</code></li>
+                <li><code>int/float</code> → <code>liczba</code></li>
+                <li><code>True/False/None</code> → <code>true/false/null</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Czym jest JSON?</a></li>
+            <li><a href="#sec-modul">2. Moduł json – Podstawy</a></li>
+            <li><a href="#sec-pliki">3. Zapis i Odczyt</a></li>
+            <li><a href="#sec-projekt">4. Menedżer Ustawień</a></li>
+            <li><a href="#sec-api">5. JSON a API</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

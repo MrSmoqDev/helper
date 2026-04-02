@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Moduł Time</title>
+    <!-- Czcionki i Ikony -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Wspólny arkusz stylów -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- LEWY SIDEBAR (Nawigacja) -->
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp i Ogólne</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html" class="active">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót do Menu</a>
+        </div>
+    </nav>
+
+    <!-- GŁÓWNA TREŚĆ -->
+    <div class="main-content">
+        <header>
+            <h1>Moduł Time ⏳</h1>
+            <p>Praca z czasem, opóźnieniami i datami w Pythonie.</p>
+        </header>
+
+        <!-- Sekcja 1 -->
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Wstęp do modułu Time</h3>
+            <p>Moduł <code class="inline">time</code> pozwala na operacje związane z czasem: wstrzymywanie programu, pobieranie aktualnej godziny, mierzenie wydajności kodu czy formatowanie dat.</p>
+            <pre><code><span class="kw">import</span> time  <span class="com"># Import na początku pliku</span></code></pre>
+        </div>
+
+        <!-- Sekcja 2 -->
+        <div class="lesson-card" id="sec-sleep">
+            <h3>2. Wstrzymywanie Programu (Sleep)</h3>
+            <p>Funkcja <span class="func">time.sleep()</span> zatrzymuje wykonywanie kodu na określoną liczbę sekund. Przydaje się np. przy tworzeniu pętli, odliczaniu lub opóźnianiu zapytań do API.</p>
+            <pre><code><span class="kw">import</span> time
+
+<span class="kw">print</span>(<span class="str">"Start..."</span>)
+<span class="func">time.sleep</span>(<span class="num">2</span>)  <span class="com"># Czekaj 2 sekundy</span>
+<span class="kw">print</span>(<span class="str">"Koniec po 2 sekundach!"</span>)</code></pre>
+            <p><strong>Zastosowanie:</strong> Odliczanie, animacje w konsoli, limitowanie zapytań.</p>
+        </div>
+
+        <!-- Sekcja 3 -->
+        <div class="lesson-card" id="sec-aktualny">
+            <h3>3. Aktualny Czas i Timestamp</h3>
+            <p>Python przechowuje czas jako <strong>timestamp</strong> – liczbę sekund, która minęła od 1 stycznia 1970 roku (tzw. Epoka Uniksa).</p>
+            <ul>
+                <li><code class="inline">time.time()</code> – Zwraca aktualny timestamp (liczba float).</li>
+                <li><code class="inline">time.ctime()</code> – Zamienia timestamp na czytelną datę (string).</li>
+                <li><code class="inline">time.localtime()</code> – Zwraca obiekt z rozpakowanymi danymi (rok, miesiąc, dzień...).</li>
+            </ul>
+            <pre><code><span class="kw">import</span> time
+
+<span class="com"># Timestamp (sekundy od 1970)</span>
+teraz_ts = <span class="func">time.time</span>()
+<span class="kw">print</span>(<span class="str">f"Timestamp: {teraz_ts}"</span>)
+
+<span class="com"># Czytelna data</span>
+<span class="kw">print</span>(<span class="func">time.ctime</span>())  <span class="out"># np. Mon Oct 23 15:30:00 2023</span>
+
+<span class="com"># Szczegółowy obiekt czasu</span>
+lokalny = <span class="func">time.localtime</span>()
+<span class="kw">print</span>(<span class="str">f"Rok: {lokalny.tm_year}"</span>)
+<span class="kw">print</span>(<span class="str">f"Godzina: {lokalny.tm_hour}"</span>)</code></pre>
+        </div>
+
+        <!-- Sekcja 4 -->
+        <div class="lesson-card" id="sec-mierzenie">
+            <h3>4. Mierzenie Czasu Wykonania</h3>
+            <p>To jedna z najważniejszych funkcji w praktyce. Pozwala sprawdzić, jak szybki jest Twój kod (np. do optymalizacji algorytmów).</p>
+            <pre><code><span class="kw">import</span> time
+
+start = <span class="func">time.time</span>()  <span class="com"># Zapisz czas startu</span>
+
+<span class="com">--- Twój kod do sprawdzenia ---</span>
+<span class="func">time.sleep</span>(<span class="num">1</span>)
+<span class="com">-----------------------------</span>
+
+koniec = <span class="func">time.time</span>()  <span class="com"># Zapisz czas końca</span>
+
+trwanie = koniec - start
+<span class="kw">print</span>(<span class="str">f"Kod wykonywał się: {trwanie:.4f} sekundy"</span>)</code></pre>
+        </div>
+
+        <!-- Sekcja 5 -->
+        <div class="lesson-card" id="sec-formatowanie">
+            <h3>5. Formatowanie Daty (strftime)</h3>
+            <p>Funkcja <span class="func">time.strftime()</span> pozwala sformatować czas według własnego wzoru. Używamy specjalnych symboli (dyrektyw).</p>
+            
+            <table>
+                <tr>
+                    <th>Kod</th>
+                    <th>Znaczenie</th>
+                    <th>Przykład</th>
+                </tr>
+                <tr>
+                    <td><code>%Y</code></td>
+                    <td>Rok (4 cyfry)</td>
+                    <td>2023</td>
+                </tr>
+                <tr>
+                    <td><code>%m</code></td>
+                    <td>Miesiąc (01-12)</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td><code>%d</code></td>
+                    <td>Dzień miesiąca (01-31)</td>
+                    <td>23</td>
+                </tr>
+                <tr>
+                    <td><code>%H</code></td>
+                    <td>Godzina (00-23)</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td><code>%M</code></td>
+                    <td>Minuta (00-59)</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td><code>%S</code></td>
+                    <td>Sekunda (00-59)</td>
+                    <td>45</td>
+                </tr>
+            </table>
+
+            <pre><code><span class="kw">import</span> time
+
+teraz = <span class="func">time.localtime</span>()
+
+<span class="com"># Format: DD/MM/YYYY</span>
+data = <span class="func">time.strftime</span>(<span class="str">"%d/%m/%Y"</span>, teraz)
+<span class="kw">print</span>(<span class="str">f"Data: {data}"</span>)  <span class="out"># Data: 23/10/2023</span>
+
+<span class="com"># Format: Godzina:Minuta</span>
+godzina = <span class="func">time.strftime</span>(<span class="str">"%H:%M"</span>, teraz)
+<span class="kw">print</span>(<span class="str">f"Godzina: {godzina}"</span>)  <span class="out"># Godzina: 15:30</span></code></pre>
+        </div>
+
+        <!-- Sekcja 6 -->
+        <div class="lesson-card" id="sec-przyklad">
+            <h3>6. Praktyczny Przykład: Odliczanie</h3>
+            <p>Połączenie wiedzy o <code>sleep</code>, <code>strftime</code> i pętlach. Stwórzmy prosty zegar odliczający.</p>
+            <pre><code><span class="kw">import</span> time
+<span class="kw">import</span> os
+
+<span class="kw">def</span> <span class="func">odliczanie</span>(sekundy):
+    <span class="kw">while</span> sekundy > <span class="num">0</span>:
+        <span class="com"># Wyczyszczenie konsoli (działa na Windows/Linux)</span>
+        os.system(<span class="str">'cls'</span> <span class="kw">if</span> os.name == <span class="str">'nt'</span> <span class="kw">else</span> <span class="str">'clear'</span>)
+        
+        <span class="kw">print</span>(<span class="str">f"Pozostało: {sekundy} s"</span>)
+        <span class="func">time.sleep</span>(<span class="num">1</span>)
+        sekundy -= <span class="num">1</span>
+    
+    <span class="kw">print</span>(<span class="str">"⏰ KONIEC! ⏰"</span>)
+
+<span class="func">odliczanie</span>(<span class="num">5</span>)</code></pre>
+        </div>
+
+        <!-- Sekcja 7 -->
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga Funkcji Time</h3>
+            <p>Podsumowanie najważniejszych funkcji:</p>
+            <table>
+                <tr>
+                    <th>Funkcja</th>
+                    <th>Opis</th>
+                    <th>Zwraca</th>
+                </tr>
+                <tr>
+                    <td><span class="func">time.sleep(X)</span></td>
+                    <td>Wstrzymuje na X sekund</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td><span class="func">time.time()</span></td>
+                    <td>Aktualny timestamp</td>
+                    <td>float</td>
+                </tr>
+                <tr>
+                    <td><span class="func">time.ctime()</span></td>
+                    <td>Czas jako tekst</td>
+                    <td>string</td>
+                </tr>
+                <tr>
+                    <td><span class="func">time.localtime()</span></td>
+                    <td>Struktura czasu</td>
+                    <td>object</td>
+                </tr>
+                <tr>
+                    <td><span class="func">time.strftime(fmt)</span></td>
+                    <td>Formatowanie czasu</td>
+                    <td>string</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- PRAWY SIDEBAR (Spis Treści) -->
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Wstęp</a></li>
+            <li><a href="#sec-sleep">2. Wstrzymywanie (Sleep)</a></li>
+            <li><a href="#sec-aktualny">3. Aktualny Czas</a></li>
+            <li><a href="#sec-mierzenie">4. Mierzenie Kodu</a></li>
+            <li><a href="#sec-formatowanie">5. Formatowanie</a></li>
+            <li><a href="#sec-przyklad">6. Przykład</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>

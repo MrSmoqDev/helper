@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Prosta Gra Konsolowa</title>
+    <!-- Czcionki i Ikony -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Wspólny arkusz stylów -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- LEWY SIDEBAR (Nawigacja) -->
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp i Ogólne</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html" class="active">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót do Menu</a>
+        </div>
+    </nav>
+
+    <!-- GŁÓWNA TREŚĆ -->
+    <div class="main-content">
+        <header>
+            <h1>Prosta Gra Konsolowa 🎮</h1>
+            <p>Naucz się tworzyć interaktywne gry w terminalu z menu i pętlami.</p>
+        </header>
+
+        <!-- Sekcja 1 -->
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Co będziemy tworzyć?</h3>
+            <p>Stworzymy klasyczną grę <strong>"Zgadnij Liczbę"</strong>. Komputer losuje liczbę od 1 do 100, a Ty musisz ją odgadnąć. Po każdej próbie otrzymasz podpowiedź, czy szukana liczba jest większa, czy mniejsza.</p>
+            <p><strong>Czego się nauczysz:</strong></p>
+            <ul>
+                <li>✅ Tworzenie menu w konsoli</li>
+                <li>✅ Pętla <code>while</code> (główna pętla gry)</li>
+                <li>✅ Obsługa błędów (<code>try-except</code>)</li>
+                <li>✅ Losowanie liczb (<code>random</code>)</li>
+                <li>✅ Funkcje i modularność kodu</li>
+            </ul>
+        </div>
+
+        <!-- Sekcja 2 -->
+        <div class="lesson-card" id="sec-kod">
+            <h3>2. Pełny Kod Gry</h3>
+            <p>Najpierw zobaczmy całość. Skopiuj ten kod do pliku np. <code>gra.py</code> i uruchom.</p>
+            <pre><code><span class="kw">import</span> random
+<span class="kw">import</span> time
+
+<span class="com"># --- FUNKCJE POMOCNICZE ---</span>
+
+<span class="kw">def</span> <span class="func">wyswietl_menu</span>():
+    <span class="str">"""Wyświetla główne menu gry"""</span>
+    <span class="kw">print</span>(<span class="str">"\n=== 🎮 ZGADNIJ LICZBĘ 🎮 ==="</span>)
+    <span class="kw">print</span>(<span class="str">"1. 🎲 Graj"</span>)
+    <span class="kw">print</span>(<span class="str">"2. ℹ️  Instrukcja"</span>)
+    <span class="kw">print</span>(<span class="str">"3. 🚪 Wyjdź"</span>)
+    <span class="kw">print</span>(<span class="str">"============================"</span>)
+
+<span class="kw">def</span> <span class="func">graj</span>():
+    <span class="str">"""Główna logika gry"""</span>
+    liczba = <span class="func">random.randint</span>(<span class="num">1</span>, <span class="num">100</span>)
+    proba = <span class="num">0</span>
+    
+    <span class="kw">print</span>(<span class="str">"\n🤔 Wylosowałem liczbę od 1 do 100!"</span>)
+    
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">try</span>:
+            guess = <span class="func">int</span>(<span class="func">input</span>(<span class="str">"\nTwoja liczba: "</span>))
+            proba += <span class="num">1</span>
+            
+            <span class="kw">if</span> guess < liczba:
+                <span class="kw">print</span>(<span class="str">"📈 Za mało! Spróbuj większej."</span>)
+            <span class="kw">elif</span> guess > liczba:
+                <span class="kw">print</span>(<span class="str">"📉 Za dużo! Spróbuj mniejszej."</span>)
+            <span class="kw">else</span>:
+                <span class="kw">print</span>(<span class="str">f"🎉 BRAWO! Zgadłeś w {proba} próbach!"</span>)
+                <span class="kw">break</span>
+                
+        <span class="kw">except</span> <span class="func">ValueError</span>:
+            <span class="kw">print</span>(<span class="str">"❌ To nie jest liczba! Wpisz cyfry."</span>)
+
+<span class="kw">def</span> <span class="func">instrukcja</span>():
+    <span class="str">"""Wyświetla instrukcję"""</span>
+    <span class="kw">print</span>(<span class="str">"\n📖 INSTRUKCJA:"</span>)
+    <span class="kw">print</span>(<span class="str">"Komputer losuje liczbę 1-100."</span>)
+    <span class="kw">print</span>(<span class="str">"Masz podpowiedzi (za mało/za dużo)."</span>)
+    <span class="kw">print</span>(<span class="str">"Wygraj w jak najmniejszej liczbie prób!"</span>)
+    <span class="func">time.sleep</span>(<span class="num">3</span>)
+
+<span class="com"># --- GŁÓWNA PĘTLA PROGRAMU ---</span>
+
+<span class="kw">def</span> <span class="func">main</span>():
+    <span class="str">"""Główna pętla menu"""</span>
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="func">wyswietl_menu</span>()
+        wybor = <span class="func">input</span>(<span class="str">"\nWybierz opcję (1-3): "</span>)
+        
+        <span class="kw">if</span> wybor == <span class="str">"1"</span>:
+            <span class="func">graj</span>()
+        <span class="kw">elif</span> wybor == <span class="str">"2"</span>:
+            <span class="func">instrukcja</span>()
+        <span class="kw">elif</span> wybor == <span class="str">"3"</span>:
+            <span class="kw">print</span>(<span class="str">"\n👋 Dziękuję za grę! Do zobaczenia."</span>)
+            <span class="kw">break</span>
+        <span class="kw">else</span>:
+            <span class="kw">print</span>(<span class="str">"❌ Nieprawidłowy wybór. Spróbuj ponownie."</span>)
+
+<span class="com"># Uruchomienie programu</span>
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="func">main</span>()</code></pre>
+        </div>
+
+        <!-- Sekcja 3 -->
+        <div class="lesson-card" id="sec-funkcje">
+            <h3>3. Analiza Kodu - Funkcje</h3>
+            <p>Kod podzieliliśmy na funkcje, żeby był czytelny. Każda funkcja odpowiada za jedno zadanie.</p>
+            
+            <h4 style="margin: 15px 0 10px 0; color: var(--py-blue);">🔹 <code>wyswietl_menu()</code></h4>
+            <p>Wyświetla opcje do wyboru. Używamy <code>print</code> z emoji, żeby menu wyglądało nowocześnie.</p>
+
+            <h4 style="margin: 15px 0 10px 0; color: var(--py-blue);">🔹 <code>graj()</code></h4>
+            <p>To serce gry. Zawiera:</p>
+            <ul>
+                <li><code>random.randint(1, 100)</code> – losuje liczbę.</li>
+                <li>Pętlę <code>while True</code> – gra trwa, dopóki gracz nie zgadnie.</li>
+                <li><code>try-except</code> – chroni przed wpisaniem tekstu zamiast liczby.</li>
+            </ul>
+
+            <h4 style="margin: 15px 0 10px 0; color: var(--py-blue);">🔹 <code>main()</code></h4>
+            <p>Główna pętla programu. Działa w nieskończoność, dopóki użytkownik nie wybierze opcji "Wyjdź".</p>
+        </div>
+
+        <!-- Sekcja 4 -->
+        <div class="lesson-card" id="sec-petla">
+            <h3>4. Jak działa pętla menu?</h3>
+            <p>To najważniejszy wzór w programowaniu konsolowym. Zobacz schemat:</p>
+            <pre><code><span class="kw">while</span> <span class="kw">True</span>:          <span class="com"># 1. Pętla nieskończona</span>
+    <span class="func">pokaz_menu</span>()     <span class="com"># 2. Wyświetl opcje</span>
+    wybor = <span class="func">input</span>()  <span class="com"># 3. Pobierz wybór</span>
+    
+    <span class="kw">if</span> wybor == <span class="str">"1"</span>:
+        <span class="func">akcja_1</span>()    <span class="com"># 4. Wykonaj akcję</span>
+    <span class="kw">elif</span> wybor == <span class="str">"2"</span>:
+        <span class="func">akcja_2</span>()
+    <span class="kw">elif</span> wybor == <span class="str">"3"</span>:
+        <span class="kw">break</span>         <span class="com"># 5. Wyjdź z pętli</span></code></pre>
+            <p><strong>Dlaczego <code>while True</code>?</strong> Bo chcemy, żeby menu pojawiało się po każdej zakończonej grze, a nie tylko raz.</p>
+        </div>
+
+        <!-- Sekcja 5 -->
+        <div class="lesson-card" id="sec-obsluga">
+            <h3>5. Obsługa Błędów (Try-Except)</h3>
+            <p>Gdy użytkownik wpisze "abc" zamiast liczby, program by się crashował. <code>try-except</code> to предотвращa.</p>
+            <pre><code><span class="kw">try</span>:
+    guess = <span class="func">int</span>(<span class="func">input</span>(<span class="str">"Twoja liczba: "</span>))
+    <span class="com"># Kod wykonuje się, jeśli input to liczba</span>
+    
+<span class="kw">except</span> <span class="func">ValueError</span>:
+    <span class="kw">print</span>(<span class="str">"❌ To nie jest liczba!"</span>)
+    <span class="com"># Kod wykonuje się, jeśli wystąpił błąd</span></code></pre>
+            <p>Dzięki temu gra działa dalej, nawet jeśli gracz popełni błąd.</p>
+        </div>
+
+        <!-- Sekcja 6 -->
+        <div class="lesson-card" id="sec-rozszerzenia">
+            <h3>6. Pomysły na Rozszerzenie</h3>
+            <p>Gdy już zrozumiesz kod, spróbuj dodać nowe funkcje:</p>
+            <div class="imports-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>🏆 Rekordy</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Zapisz najlepszy wynik do pliku tekstowego.</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>🎯 Poziomy</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Łatwy (1-50), Średni (1-100), Trudny (1-500).</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>❤️ Życia</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Gracz ma tylko 10 prób na odgadnięcie.</p>
+                </div>
+                <div class="import-card" style="background: #f8f9fa; border: 1px solid #e9ecef; padding: 15px; border-radius: 8px;">
+                    <strong>🎨 Kolory</strong>
+                    <p style="font-size: 13px; margin-top: 5px;">Użyj biblioteki <code>colorama</code> do kolorów.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sekcja 7 -->
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga - Przydatne Funkcje</h3>
+            <table>
+                <tr>
+                    <th>Funkcja</th>
+                    <th>Opis</th>
+                    <th>Przykład</th>
+                </tr>
+                <tr>
+                    <td><code>input()</code></td>
+                    <td>Pobiera tekst od użytkownika</td>
+                    <td><code>input("Podaj: ")</code></td>
+                </tr>
+                <tr>
+                    <td><code>int()</code></td>
+                    <td>Zamienia tekst na liczbę</td>
+                    <td><code>int("5") → 5</code></td>
+                </tr>
+                <tr>
+                    <td><code>random.randint()</code></td>
+                    <td>Losuje liczbę z zakresu</td>
+                    <td><code>randint(1, 100)</code></td>
+                </tr>
+                <tr>
+                    <td><code>while True</code></td>
+                    <td>Pętla nieskończona</td>
+                    <td><code>while True: ...</code></td>
+                </tr>
+                <tr>
+                    <td><code>break</code></td>
+                    <td>Przerywa pętlę</td>
+                    <td><code>if koniec: break</code></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- PRAWY SIDEBAR (Spis Treści) -->
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Co tworzymy?</a></li>
+            <li><a href="#sec-kod">2. Pełny Kod</a></li>
+            <li><a href="#sec-funkcje">3. Analiza Funkcji</a></li>
+            <li><a href="#sec-petla">4. Pętla Menu</a></li>
+            <li><a href="#sec-obsluga">5. Obsługa Błędów</a></li>
+            <li><a href="#sec-rozszerzenia">6. Rozszerzenia</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Datetime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html" class="active">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home"><a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót</a></div>
+    </nav>
+
+    <div class="main-content">
+        <header><h1>Moduł Datetime 📅</h1><p>Zaawansowana praca z datą i czasem – różnice, formatowanie, strefy czasowe.</p></header>
+
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Datetime vs Time</h3>
+            <p>Moduł <code>time</code> (który już znasz) operuje na timestampach. <code>datetime</code> jest bardziej przyjazny: ma obiekty <code>date</code>, <code>time</code> i <code>datetime</code>, które łatwo porównywać i formatować.</p>
+            <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime, date, time, timedelta
+
+<span class="com"># Aktualna data i czas</span>
+teraz = datetime.<span class="func">now</span>()
+<span class="kw">print</span>(teraz)  <span class="out"># 2024-01-15 14:30:45.123456</span>
+
+<span class="com"># Tylko data</span>
+dzis = date.<span class="func">today</span>()
+<span class="kw">print</span>(dzis)  <span class="out"># 2024-01-15</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-tworzenie">
+            <h3>2. Tworzenie i Dostęp do Składowych</h3>
+            <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime, date
+
+<span class="com"># Ręczne tworzenie</span>
+urodziny = datetime(<span class="num">1990</span>, <span class="num">5</span>, <span class="num">15</span>, <span class="num">10</span>, <span class="num">30</span>)  <span class="com"># YYYY, MM, DD, HH, MM</span>
+<span class="kw">print</span>(urodziny)
+
+<span class="com"># Dostęp do części</span>
+<span class="kw">print</span>(urodziny.<span class="func">year</span>)    <span class="out"># 1990</span>
+<span class="kw">print</span>(urodziny.<span class="func">month</span>)   <span class="out"># 5</span>
+<span class="kw">print</span>(urodziny.<span class="func">day</span>)     <span class="out"># 15</span>
+<span class="kw">print</span>(urodziny.<span class="func">hour</span>)    <span class="out"># 10</span>
+<span class="kw">print</span>(urodziny.<span class="func">strftime</span>(<span class="str">"%A"</span>))  <span class="out"># "Tuesday" (dzień tygodnia)</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-formatowanie">
+            <h3>3. Formatowanie – strftime i strptime</h3>
+            <p><span class="func">strftime()</span> zamienia datetime → string. <span class="func">strptime()</span> string → datetime.</p>
+            <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+teraz = datetime.<span class="func">now</span>()
+
+<span class="com"># Formatowanie na string</span>
+<span class="kw">print</span>(teraz.<span class="func">strftime</span>(<span class="str">"%Y-%m-%d"</span>))      <span class="out"># 2024-01-15</span>
+<span class="kw">print</span>(teraz.<span class="func">strftime</span>(<span class="str">"%d.%m.%Y %H:%M"</span>)) <span class="out"># 15.01.2024 14:30</span>
+<span class="kw">print</span>(teraz.<span class="func">strftime</span>(<span class="str">"%A, %d %B %Y"</span>))   <span class="out"># Monday, 15 January 2024</span>
+
+<span class="com"># Parsowanie stringa na datetime</span>
+tekst = <span class="str">"2024-12-25 18:00"</span>
+data = datetime.<span class="func">strptime</span>(tekst, <span class="str">"%Y-%m-%d %H:%M"</span>)
+<span class="kw">print</span>(data)  <span class="out"># 2024-12-25 18:00:00</span></code></pre>
+            <table style="margin-top:15px">
+                <tr><th>Kod</th><th>Znaczenie</th><th>Przykład</th></tr>
+                <tr><td><code>%Y</code></td><td>Rok (4 cyfry)</td><td>2024</td></tr>
+                <tr><td><code>%m</code></td><td>Miesiąc (01-12)</td><td>01</td></tr>
+                <tr><td><code>%d</code></td><td>Dzień (01-31)</td><td>15</td></tr>
+                <tr><td><code>%H</code></td><td>Godzina (00-23)</td><td>14</td></tr>
+                <tr><td><code>%M</code></td><td>Minuta (00-59)</td><td>30</td></tr>
+                <tr><td><code>%A</code></td><td>Dzień tygodnia (nazwa)</td><td>Monday</td></tr>
+                <tr><td><code>%B</code></td><td>Miesiąc (nazwa)</td><td>January</td></tr>
+            </table>
+        </div>
+
+        <div class="lesson-card" id="sec-roznice">
+            <h3>4. Różnice Czasowe – timedelta</h3>
+            <p><code>timedelta</code> reprezentuje różnicę między dwiema datami. Idealne do obliczania wieku, deadline'ów, cooldownów.</p>
+            <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime, timedelta
+
+teraz = datetime.<span class="func">now</span>()
+
+<span class="com"># Dodaj 7 dni</span>
+za_tydzien = teraz + timedelta(days=<span class="num">7</span>)
+<span class="kw">print</span>(<span class="str">f"Za tydzień: {za_tydzien.strftime('%Y-%m-%d')}"</span>)
+
+<span class="com"># Odejmij 3 godziny</span>
+godziny_temu = teraz - timedelta(hours=<span class="num">3</span>)
+
+<span class="com"># Oblicz różnicę</span>
+urodziny = datetime(<span class="num">2024</span>, <span class="num">5</span>, <span class="num">15</span>)
+do_urodzin = urodziny - teraz
+<span class="kw">print</span>(<span class="str">f"Do urodzin: {do_urodzin.days} dni"</span>)
+
+<span class="com"># Przydatne jednostki timedelta</span>
+delta = timedelta(days=<span class="num">1</span>, hours=<span class="num">2</span>, minutes=<span class="num">30</span>)
+<span class="kw">print</span>(delta.<span class="func">total_seconds</span>())  <span class="out"># Całkowita liczba sekund</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>5. 🎮 Projekt: System Cooldownów w Grze</h3>
+            <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime, timedelta
+<span class="kw">import</span> json
+
+<span class="kw">class</span> <span class="func">Cooldown</span>:
+    <span class="str">"""Prosty menedżer cooldownów"""</span>
+    <span class="kw">def</span> <span class="func">__init__</span>(self, nazwa, sekundy):
+        self.nazwa = nazwa
+        self.czas_trwania = timedelta(seconds=sekundy)
+        self.ostatnie_uzycie = <span class="kw">None</span>
+    
+    <span class="kw">def</span> <span class="func">mozna_uzy</span>(self):
+        <span class="kw">if</span> self.ostatnie_uzycie <span class="kw">is</span> <span class="kw">None</span>:
+            <span class="kw">return</span> <span class="kw">True</span>
+        return datetime.<span class="func">now</span>() >= self.ostatnie_uzycie + self.czas_trwania
+    
+    <span class="kw">def</span> <span class="func">uzyj</span>(self):
+        <span class="kw">if</span> <span class="kw">not</span> self.<span class="func">mozna_uzy</span>():
+            pozostalo = (self.ostatnie_uzycie + self.czas_trwania) - datetime.<span class="func">now</span>()
+            <span class="kw">return</span> <span class="kw">False</span>, f"⏳ Poczekaj {pozostalo.seconds} sekund!"
+        
+        self.ostatnie_uzycie = datetime.<span class="func">now</span>()
+        <span class="kw">return</span> <span class="kw">True</span>, <span class="str">f"✅ {self.nazwa} użyte!"</span>
+    
+    <span class="kw">def</span> <span class="func">do_json</span>(self):
+        <span class="str">"""Serializacja do zapisu"""</span>
+        <span class="kw">return</span> {
+            <span class="str">"nazwa"</span>: self.nazwa,
+            <span class="str">"czas_trwania"</span>: self.czas_trwania.<span class="func">total_seconds</span>(),
+            <span class="str">"ostatnie_uzycie"</span>: self.ostatnie_uzycie.<span class="func">isoformat</span>() <span class="kw">if</span> self.ostatnie_uzycie <span class="kw">else</span> <span class="kw">None</span>
+        }
+    
+    <span class="kw">@staticmethod</span>
+    <span class="kw">def</span> <span class="func">z_json</span>(data):
+        <span class="str">"""Deserializacja z pliku"""</span>
+        cd = <span class="func">Cooldown</span>(data[<span class="str">"nazwa"</span>], data[<span class="str">"czas_trwania"</span>])
+        <span class="kw">if</span> data[<span class="str">"ostatnie_uzycie"</span>]:
+            cd.ostatnie_uzycie = datetime.<span class="func">fromisoformat</span>(data[<span class="str">"ostatnie_uzycie"</span>])
+        <span class="kw">return</span> cd
+
+<span class="com"># Demo</span>
+heal = <span class="func">Cooldown</span>(<span class="str">"Leczenie"</span>, sekundy=<span class="num">30</span>)
+
+<span class="kw">for</span> _ <span class="kw">in</span> <span class="func">range</span>(<span class="num">3</span>):
+    ok, msg = heal.<span class="func">uzyj</span>()
+    <span class="kw">print</span>(msg)
+    <span class="kw">if</span> ok:
+        <span class="kw">print</span>(<span class="str">"✨ Leczenie zastosowane!"</span>)</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga Datetime</h3>
+            <table>
+                <tr><th>Klasa/Funkcja</th><th>Opis</th></tr>
+                <tr><td><code>datetime.now()</code></td><td>Aktualna data i czas</td></tr>
+                <tr><td><code>date.today()</code></td><td>Tylko dzisiejsza data</td></tr>
+                <tr><td><code>datetime(Y,M,D,h,m,s)</code></td><td>Tworzy obiekt z podanych wartości</td></tr>
+                <tr><td><code>.strftime(fmt)</code></td><td>Datetime → sformatowany string</td></tr>
+                <tr><td><code>strptime(str, fmt)</code></td><td>String → datetime (parsowanie)</td></tr>
+                <tr><td><code>timedelta(days=, hours=)</code></td><td>Różnica czasu / dodawanie</td></tr>
+                <tr><td><code>data1 - data2</code></td><td>Zwraca timedelta (różnica)</td></tr>
+                <tr><td><code>.isoformat()</code></td><td>Datetime → string ISO ("2024-01-15T14:30:00")</td></tr>
+                <tr><td><code>fromisoformat(str)</code></td><td>String ISO → datetime</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Datetime vs Time</a></li>
+            <li><a href="#sec-tworzenie">2. Tworzenie i Dostęp</a></li>
+            <li><a href="#sec-formatowanie">3. Formatowanie</a></li>
+            <li><a href="#sec-roznice">4. Różnice – timedelta</a></li>
+            <li><a href="#sec-projekt">5. System Cooldownów</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

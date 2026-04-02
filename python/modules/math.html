@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Moduł Math Szczegółowo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <!-- LEWY SIDEBAR (Nawigacja między plikami) -->
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp i Ogólne</a></li>
+            <li><a href="math.html" class="active">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+
+        <div class="back-home">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót do Menu</a>
+        </div>
+    </nav>
+
+    <!-- GŁÓWNA TREŚĆ -->
+    <div class="main-content">
+        <header>
+            <h1>Moduł Math 📐</h1>
+            <p>Kompletny przewodnik po matematyce w Pythonie – od podstaw po kalkulator.</p>
+        </header>
+
+        <!-- Sekcja 1 -->
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Co to jest moduł Math?</h3>
+            <p>Moduł <code class="inline">math</code> to wbudowana biblioteka Pythona, która dostarcza zaawansowane funkcje matematyczne zdefiniowane przez standard C. Nie trzeba nic instalować – jest dostępny od razu po zainstalowaniu Pythona.</p>
+            <pre><code><span class="kw">import</span> math  <span class="com"># To musi być na początku pliku</span></code></pre>
+        </div>
+
+        <!-- NOWA Sekcja: Podstawowe operacje -->
+        <div class="lesson-card" id="sec-podstawy">
+            <h3>2. Podstawowe Operacje Arytmetyczne</h3>
+            <p>Python obsługuje wszystkie podstawowe działania matematyczne bez importowania modułu <code>math</code>. Oto kompletna lista operatorów:</p>
+            
+            <table>
+                <tr>
+                    <th>Operator</th>
+                    <th>Nazwa</th>
+                    <th>Przykład</th>
+                    <th>Wynik</th>
+                </tr>
+                <tr>
+                    <td><code class="inline">+</code></td>
+                    <td>Dodawanie</td>
+                    <td><code>5 + 3</code></td>
+                    <td><code>8</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">-</code></td>
+                    <td>Odejmowanie</td>
+                    <td><code>10 - 4</code></td>
+                    <td><code>6</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">*</code></td>
+                    <td>Mnożenie</td>
+                    <td><code>6 * 7</code></td>
+                    <td><code>42</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">/</code></td>
+                    <td>Dzielenie (float)</td>
+                    <td><code>10 / 3</code></td>
+                    <td><code>3.333...</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">//</code></td>
+                    <td>Dzielenie całkowite</td>
+                    <td><code>10 // 3</code></td>
+                    <td><code>3</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">%</code></td>
+                    <td>Modulo (reszta)</td>
+                    <td><code>10 % 3</code></td>
+                    <td><code>1</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">**</code></td>
+                    <td>Potęgowanie</td>
+                    <td><code>2 ** 3</code></td>
+                    <td><code>8</code></td>
+                </tr>
+            </table>
+
+            <pre><code><span class="com"># Przykłady użycia</span>
+<span class="kw">print</span>(<span class="num">2</span> + <span class="num">2</span>)           <span class="out"># 4</span>
+<span class="kw">print</span>(<span class="num">10</span> - <span class="num">3</span>)          <span class="out"># 7</span>
+<span class="kw">print</span>(<span class="num">4</span> * <span class="num">5</span>)           <span class="out"># 20</span>
+<span class="kw">print</span>(<span class="num">15</span> / <span class="num">2</span>)          <span class="out"># 7.5 (zawsze float!)</span>
+<span class="kw">print</span>(<span class="num">15</span> // <span class="num">2</span>)         <span class="out"># 7 (tylko część całkowita)</span>
+<span class="kw">print</span>(<span class="num">15</span> % <span class="num">2</span>)          <span class="out"># 1 (reszta z dzielenia)</span>
+<span class="kw">print</span>(<span class="num">2</span> ** <span class="num">4</span>)          <span class="out"># 16 (2 do potęgi 4)</span>
+
+<span class="com"># Kolejność działań jak w matematyce</span>
+<span class="kw">print</span>(<span class="num">2</span> + <span class="num">3</span> * <span class="num">4</span>)       <span class="out"># 14 (najpierw mnożenie!)</span>
+<span class="kw">print</span>((<span class="num">2</span> + <span class="num">3</span>) * <span class="num">4</span>)     <span class="out"># 20 (najpierw nawias)</span></code></pre>
+
+            <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; margin-top: 15px; border-radius: 5px;">
+                <strong>💡 Tip:</strong> Python automatycznie konwertuje wyniki do <code>float</code> przy dzieleniu <code>/</code>. Użyj <code>int()</code> lub <code>//</code>, jeśli chcesz wynik całkowity.
+            </div>
+        </div>
+
+        <!-- Sekcja 2 -->
+        <div class="lesson-card" id="sec-stale">
+            <h3>3. Ważne Stałe Matematyczne</h3>
+            <p>Math udostępnia precyzyjne wartości stałych, których nie musisz wpisywać ręcznie.</p>
+            <table>
+                <tr>
+                    <th>Stała</th>
+                    <th>Opis</th>
+                    <th>Wartość</th>
+                </tr>
+                <tr>
+                    <td><code class="inline">math.pi</code></td>
+                    <td>Liczba Pi (π)</td>
+                    <td>3.14159...</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">math.e</code></td>
+                    <td>Liczba Eulera (e)</td>
+                    <td>2.71828...</td>
+                </tr>
+                <tr>
+                    <td><code class="inline">math.tau</code></td>
+                    <td>Stała Tau (2π)</td>
+                    <td>6.28318...</td>
+                </tr>
+            </table>
+            <pre><code><span class="kw">import</span> math
+<span class="kw">print</span>(<span class="str">f"Pi: {math.pi}"</span>)
+<span class="kw">print</span>(<span class="str">f"E: {math.e}"</span>)</code></pre>
+        </div>
+
+        <!-- Sekcja 3 -->
+        <div class="lesson-card" id="sec-zaokraglanie">
+            <h3>4. Zaokrąglanie Liczb</h3>
+            <p>To najczęściej używane funkcje. Zwróć uwagę na różnicę między <span class="func">floor</span> a <span class="func">ceil</span>.</p>
+            
+            <ul>
+                <li><code class="inline">math.floor(x)</code> – Zaokrągla w <strong>dół</strong> (do podłogi).</li>
+                <li><code class="inline">math.ceil(x)</code> – Zaokrągla w <strong>górę</strong> (do sufitu).</li>
+                <li><code class="inline">math.trunc(x)</code> – Ucina część dziesiętną (jak int).</li>
+            </ul>
+
+            <pre><code><span class="kw">import</span> math
+
+liczba = <span class="num">3.7</span>
+
+<span class="com"># Podłoga (zawsze mniej lub równo)</span>
+<span class="kw">print</span>(<span class="func">math.floor</span>(liczba))  <span class="out"># Wynik: 3</span>
+
+<span class="com"># Sufit (zawsze więcej lub równo)</span>
+<span class="kw">print</span>(<span class="func">math.ceil</span>(liczba))   <span class="out"># Wynik: 4</span>
+
+<span class="com"># Ucięcie (sama część całkowita)</span>
+<span class="kw">print</span>(<span class="func">math.trunc</span>(-<span class="num">3.7</span>))    <span class="out"># Wynik: -3</span></code></pre>
+        </div>
+
+        <!-- Sekcja 4 -->
+        <div class="lesson-card" id="sec-potegi">
+            <h3>5. Potęgi i Pierwiastki</h3>
+            <p>Do obliczeń algebraicznych używamy tych funkcji:</p>
+            <ul>
+                <li><code class="inline">math.sqrt(x)</code> – Pierwiastek kwadratowy.</li>
+                <li><code class="inline">math.pow(x, y)</code> – Potęgowanie (x do potęgi y).</li>
+                <li><code class="inline">math.factorial(x)</code> – Silnia (x!).</li>
+            </ul>
+
+            <pre><code><span class="kw">import</span> math
+
+<span class="com"># Pierwiastek z 16</span>
+<span class="kw">print</span>(<span class="func">math.sqrt</span>(<span class="num">16</span>))        <span class="out"># Wynik: 4.0</span>
+
+<span class="com"># 2 do potęgi 3 (2*2*2)</span>
+<span class="kw">print</span>(<span class="func">math.pow</span>(<span class="num">2</span>, <span class="num">3</span>))       <span class="out"># Wynik: 8.0</span>
+
+<span class="com"># Silnia z 5 (5*4*3*2*1)</span>
+<span class="kw">print</span>(<span class="func">math.factorial</span>(<span class="num">5</span>))    <span class="out"># Wynik: 120</span></code></pre>
+        </div>
+
+        <!-- Sekcja 5 -->
+        <div class="lesson-card" id="sec-trygonometria">
+            <h3>6. Trygonometria (Ważne!)</h3>
+            <p>Funkcje trygonometryczne w Pythonie pracują na <strong>radianach</strong>, a nie stopniach!</p>
+            <ul>
+                <li><code class="inline">math.sin(x)</code>, <code class="inline">math.cos(x)</code>, <code class="inline">math.tan(x)</code></li>
+                <li><code class="inline">math.degrees(x)</code> – Zamienia radiany na stopnie.</li>
+                <li><code class="inline">math.radians(x)</code> – Zamienia stopnie na radiany.</li>
+            </ul>
+
+            <pre><code><span class="kw">import</span> math
+
+kat_stopnie = <span class="num">90</span>
+
+<span class="com"># Najpierw zamień stopnie na radiany!</span>
+kat_radiany = <span class="func">math.radians</span>(kat_stopnie)
+
+<span class="com"># Teraz oblicz sinus</span>
+wynik = <span class="func">math.sin</span>(kat_radiany)
+
+<span class="kw">print</span>(<span class="str">f"Sinus 90 stopni: {wynik}"</span>) <span class="out"># Wynik: 1.0</span></code></pre>
+        </div>
+
+        <!-- NOWA Sekcja: Prosty kalkulator -->
+        <div class="lesson-card" id="sec-kalkulator-prosty">
+            <h3>7. 🧮 Poradnik: Prosty Kalkulator (Wiele Liczb)</h3>
+            <p>Chcesz zrobić kalkulator, który obsłuży działanie typu <code>2+2+3+4</code>? Oto jak to zrobić krok po kroku!</p>
+            
+            <h4 style="margin: 15px 0 10px 0; color: var(--py-blue);">🔹 Krok 1: Pobranie danych od użytkownika</h4>
+            <pre><code><span class="com"># Pobieramy całe wyrażenie jako tekst</span>
+wyrazenie = <span class="func">input</span>(<span class="str">"Wpisz działanie (np. 2+2+3): "</span>)
+<span class="kw">print</span>(<span class="str">f"Obliczam: {wyrazenie}"</span>)</code></pre>
+
+            <h4 style="margin: 15px 0 10px 0; color: var(--py-blue);">🔹 Krok 2: Rozdzielenie liczb i operatorów</h4>
+            <p>Najprostszy sposób to użycie funkcji <code>eval()</code> – ale <strong>uwaga</strong>, jest niebezpieczna przy danych od użytkowników! Do nauki OK, do produkcji – lepiej parsować ręcznie.</p>
+            
+            <pre><code><span class="com"># ⚠️ TYLKO DO NAUKI - eval() wykonuje dowolny kod Python!</span>
+wynik = <span class="func">eval</span>(wyrazenie)
+<span class="kw">print</span>(<span class="str">f"Wynik: {wynik}"</span>)</code></pre>
+
+            <h4 style="margin: 15px 0 10px 0; color: var(--py-blue);">🔹 Krok 3: Bezpieczna wersja (tylko + i -)</h4>
+            <p>Lepsze podejście – ręczne parsowanie tylko dodawania i odejmowania:</p>
+            
+            <pre><code><span class="kw">def</span> <span class="func">kalkulator_prosty</span>(wyrazenie):
+    <span class="str">"""Oblicza wyrażenie z + i - (bez eval!)"""</span>
+    <span class="com"># Usuwamy spacje</span>
+    wyrazenie = wyrazenie.<span class="func">replace</span>(<span class="str">" "</span>, <span class="str">""</span>)
+    
+    <span class="com"># Zaczynamy od pierwszej liczby</span>
+    wynik = <span class="num">0</span>
+    aktualna_liczba = <span class="str">""</span>
+    znak = <span class="str">"+"</span>
+    
+    <span class="kw">for</span> znak_wyrazenia <span class="kw">in</span> wyrazenie + <span class="str">"+"</span>:  <span class="com"># + na końcu, żeby przetworzyć ostatnią liczbę</span>
+        <span class="kw">if</span> znak_wyrazenia <span class="kw">in</span> <span class="str">"+-"</span>:
+            <span class="kw">if</span> aktualna_liczba:
+                liczba = <span class="func">float</span>(aktualna_liczba)
+                <span class="kw">if</span> znak == <span class="str">"+"</span>:
+                    wynik += liczba
+                <span class="kw">else</span>:
+                    wynik -= liczba
+                aktualna_liczba = <span class="str">""</span>
+            znak = znak_wyrazenia
+        <span class="kw">else</span>:
+            aktualna_liczba += znak_wyrazenia
+    
+    <span class="kw">return</span> wynik
+
+<span class="com"># Test</span>
+<span class="kw">print</span>(<span class="func">kalkulator_prosty</span>(<span class="str">"2+2+3+4"</span>))    <span class="out"># Wynik: 11.0</span>
+<span class="kw">print</span>(<span class="func">kalkulator_prosty</span>(<span class="str">"10-3-2"</span>))      <span class="out"># Wynik: 5.0</span></code></pre>
+        </div>
+
+        <!-- NOWA Sekcja: Kalkulator z menu -->
+        <div class="lesson-card" id="sec-kalkulator-menu">
+            <h3>8. 🎛️ Kalkulator z Menu i Obsługą Błędów</h3>
+            <p>Teraz połączmy wszystko w program z menu, który pozwala wybrać działanie i wprowadzić wiele liczb:</p>
+            
+            <pre><code><span class="kw">def</span> <span class="func">pokaz_menu</span>():
+    <span class="kw">print</span>(<span class="str">"\n=== 🧮 KALKULATOR 🧮"</span>)
+    <span class="kw">print</span>(<span class="str">"1. ➕ Dodawanie"</span>)
+    <span class="kw">print</span>(<span class="str">"2. ➖ Odejmowanie"</span>)
+    <span class="kw">print</span>(<span class="str">"3. ✖️ Mnożenie"</span>)
+    <span class="kw">print</span>(<span class="str">"4. ➗ Dzielenie"</span>)
+    <span class="kw">print</span>(<span class="str">"5. 🚪 Wyjdź"</span>)
+
+<span class="kw">def</span> <span class="func">pobierz_liczby</span>():
+    <span class="str">"""Pobiera wiele liczb od użytkownika"""</span>
+    <span class="kw">print</span>(<span class="str">"\nWpisz liczby oddzielone spacją (np. 2 4 6 8):"</span>)
+    wejscie = <span class="func">input</span>(<span class="str">"> "</span>)
+    
+    <span class="kw">try</span>:
+        <span class="com"># Dzielimy tekst i zamieniamy na float</span>
+        liczby = [<span class="func">float</span>(x) <span class="kw">for</span> x <span class="kw">in</span> wejscie.<span class="func">split</span>()]
+        <span class="kw">return</span> liczby
+    <span class="kw">except</span> <span class="func">ValueError</span>:
+        <span class="kw">print</span>(<span class="str">"❌ Błąd: Wpisz tylko liczby!"</span>)
+        <span class="kw">return</span> []
+
+<span class="kw">def</span> <span class="func">dodawanie</span>(liczby):
+    wynik = <span class="func">sum</span>(liczby)  <span class="com"># sum() to wbudowana funkcja!</span>
+    <span class="kw">print</span>(<span class="str">f"✅ Wynik: {' + '.join(map(str, liczby))} = {wynik}"</span>)
+
+<span class="kw">def</span> <span class="func">odejmowanie</span>(liczby):
+    wynik = liczby[<span class="num">0</span>]
+    <span class="kw">for</span> l <span class="kw">in</span> liczby[<span class="num">1</span>:]:
+        wynik -= l
+    <span class="kw">print</span>(<span class="str">f"✅ Wynik: {' - '.join(map(str, liczby))} = {wynik}"</span>)
+
+<span class="kw">def</span> <span class="func">mnozenie</span>(liczby):
+    wynik = <span class="num">1</span>
+    <span class="kw">for</span> l <span class="kw">in</span> liczby:
+        wynik *= l
+    <span class="kw">print</span>(<span class="str">f"✅ Wynik: {' × '.join(map(str, liczby))} = {wynik}"</span>)
+
+<span class="kw">def</span> <span class="func">dzielenie</span>(liczby):
+    <span class="kw">if</span> <span class="func">len</span>(liczby) < <span class="num">2</span>:
+        <span class="kw">print</span>(<span class="str">"❌ Potrzebne co najmniej 2 liczby!"</span>)
+        <span class="kw">return</span>
+    
+    wynik = liczby[<span class="num">0</span>]
+    <span class="kw">try</span>:
+        <span class="kw">for</span> l <span class="kw">in</span> liczby[<span class="num">1</span>:]:
+            wynik /= l
+        <span class="kw">print</span>(<span class="str">f"✅ Wynik: {' ÷ '.join(map(str, liczby))} = {wynik:.4f}"</span>)
+    <span class="kw">except</span> <span class="func">ZeroDivisionError</span>:
+        <span class="kw">print</span>(<span class="str">"❌ Nie można dzielić przez zero!"</span>)
+
+<span class="kw">def</span> <span class="func">main</span>():
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="func">pokaz_menu</span>()
+        wybor = <span class="func">input</span>(<span class="str">"\nWybierz opcję (1-5): "</span>)
+        
+        <span class="kw">if</span> wybor == <span class="str">"5"</span>:
+            <span class="kw">print</span>(<span class="str">"👋 Do zobaczenia!"</span>)
+            <span class="kw">break</span>
+        
+        <span class="kw">if</span> wybor <span class="kw">not</span> <span class="kw">in</span> [<span class="str">"1"</span>, <span class="str">"2"</span>, <span class="str">"3"</span>, <span class="str">"4"</span>]:
+            <span class="kw">print</span>(<span class="str">"❌ Nieprawidłowy wybór!"</span>)
+            <span class="kw">continue</span>
+        
+        liczby = <span class="func">pobierz_liczby</span>()
+        <span class="kw">if</span> <span class="kw">not</span> liczby:
+            <span class="kw">continue</span>
+        
+        <span class="kw">if</span> wybor == <span class="str">"1"</span>:
+            <span class="func">dodawanie</span>(liczby)
+        <span class="kw">elif</span> wybor == <span class="str">"2"</span>:
+            <span class="func">odejmowanie</span>(liczby)
+        <span class="kw">elif</span> wybor == <span class="str">"3"</span>:
+            <span class="func">mnozenie</span>(liczby)
+        <span class="kw">elif</span> wybor == <span class="str">"4"</span>:
+            <span class="func">dzielenie</span>(liczby)
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="func">main</span>()</code></pre>
+
+            <p><strong>Przykład działania:</strong></p>
+            <pre><code>=== 🧮 KALKULATOR 🧮
+1. ➕ Dodawanie
+2. ➖ Odejmowanie
+3. ✖️ Mnożenie
+4. ➗ Dzielenie
+5. 🚪 Wyjdź
+
+Wybierz opcję (1-5): 1
+
+Wpisz liczby oddzielone spacją (np. 2 4 6 8):
+> 2 2 3 4
+✅ Wynik: 2.0 + 2.0 + 3.0 + 4.0 = 11.0</code></pre>
+        </div>
+
+        <!-- NOWA Sekcja: Zaawansowany kalkulator -->
+        <div class="lesson-card" id="sec-kalkulator-zaawansowany">
+            <h3>9. 🚀 Zaawansowany: Kalkulator z Pętlą i Komendami</h3>
+            <p>Chcesz kalkulator, gdzie wpisujesz <code>2 + 2 + 3 =</code> i dostajesz wynik? Oto wersja z pętlą wprowadzania:</p>
+            
+            <pre><code><span class="kw">def</span> <span class="func">kalkulator_interaktywny</span>():
+    <span class="str">"""Kalkulator z pętlą: wpisuj liczby i operatory po kolei"""</span>
+    wynik = <span class="kw">None</span>
+    
+    <span class="kw">print</span>(<span class="str">"\n=== 🧮 KALKULATOR INTERAKTYWNY 🧮"</span>)
+    <span class="kw">print</span>(<span class="str">"Wpisuj: liczba, potem operator (+,-,*,/), na koniec '=' aby zobaczyć wynik"</span>)
+    <span class="kw">print</span>(<span class="str">"Wpisz 'exit' aby wyjść\n"</span>)
+    
+    <span class="kw">while</span> <span class="kw">True</span>:
+        wejscie = <span class="func">input</span>(<span class="str">f"{wynik if wynik else '0'} > "</span>).<span class="func">strip</span>()
+        
+        <span class="kw">if</span> wejscie.<span class="func">lower</span>() == <span class="str">"exit"</span>:
+            <span class="kw">print</span>(<span class="str">"👋 Koniec."</span>)
+            <span class="kw">break</span>
+        
+        <span class="com"># Jeśli to pierwsza liczba</span>
+        <span class="kw">if</span> wynik <span class="kw">is</span> <span class="kw">None</span>:
+            <span class="kw">try</span>:
+                wynik = <span class="func">float</span>(wejscie)
+                <span class="kw">print</span>(<span class="str">f"✓ {wynik}"</span>)
+            <span class="kw">except</span> <span class="func">ValueError</span>:
+                <span class="kw">print</span>(<span class="str">"❌ Wpisz liczbę!"</span>)
+            <span class="kw">continue</span>
+        
+        <span class="com"># Jeśli to operator</span>
+        <span class="kw">if</span> wejscie <span class="kw">in</span> [<span class="str">"+"</span>, <span class="str">"-"</span>, <span class="str">"*"</span>, <span class="str">"/"</span>, <span class="str">"="</span>]:
+            operator = wejscie
+            
+            <span class="kw">if</span> operator == <span class="str">"="</span>:
+                <span class="kw">print</span>(<span class="str">f"🎯 WYNIK: {wynik}"</span>)
+                wynik = <span class="kw">None</span>  <span class="com"># Reset</span>
+                <span class="kw">continue</span>
+            
+            <span class="com"># Pobierz kolejną liczbę</span>
+            liczba_wejscie = <span class="func">input</span>(<span class="str">f"{wynik} {operator} "</span>).<span class="func">strip</span>()
+            
+            <span class="kw">try</span>:
+                liczba = <span class="func">float</span>(liczba_wejscie)
+                
+                <span class="kw">if</span> operator == <span class="str">"+"</span>:
+                    wynik += liczba
+                <span class="kw">elif</span> operator == <span class="str">"-"</span>:
+                    wynik -= liczba
+                <span class="kw">elif</span> operator == <span class="str">"*"</span>:
+                    wynik *= liczba
+                <span class="kw">elif</span> operator == <span class="str">"/"</span>:
+                    <span class="kw">if</span> liczba == <span class="num">0</span>:
+                        <span class="kw">print</span>(<span class="str">"❌ Nie można dzielić przez zero!"</span>)
+                        <span class="kw">continue</span>
+                    wynik /= liczba
+                
+                <span class="kw">print</span>(<span class="str">f"✓ {wynik}"</span>)
+                
+            <span class="kw">except</span> <span class="func">ValueError</span>:
+                <span class="kw">print</span>(<span class="str">"❌ Błąd: Wpisz liczbę!"</span>)
+                <span class="kw">continue</span>
+        <span class="kw">else</span>:
+            <span class="kw">print</span>(<span class="str">"❌ Wpisz operator (+, -, *, /) lub ="</span>)
+
+<span class="com"># Uruchom</span>
+<span class="func">kalkulator_interaktywny</span>()</code></pre>
+
+            <p><strong>Przykład sesji:</strong></p>
+            <pre><code>=== 🧮 KALKULATOR INTERAKTYWNY 🧮
+0 > 2
+✓ 2.0
+2.0 > +
+2.0 + 2
+✓ 4.0
+4.0 > +
+4.0 + 3
+✓ 7.0
+7.0 > =
+🎯 WYNIK: 7.0</code></pre>
+        </div>
+
+        <!-- Sekcja 6 -->
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga Funkcji</h3>
+            <p>Najczęściej używane funkcje w jednym miejscu:</p>
+            <table>
+                <tr>
+                    <th>Funkcja/Operator</th>
+                    <th>Działanie</th>
+                    <th>Przykład</th>
+                </tr>
+                <tr>
+                    <td><code class="inline">+</code></td>
+                    <td>Dodawanie</td>
+                    <td><code>2 + 2 = 4</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">-</code></td>
+                    <td>Odejmowanie</td>
+                    <td><code>5 - 3 = 2</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">*</code></td>
+                    <td>Mnożenie</td>
+                    <td><code>3 * 4 = 12</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">/</code></td>
+                    <td>Dzielenie (float)</td>
+                    <td><code>10 / 3 = 3.33</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">//</code></td>
+                    <td>Dzielenie całkowite</td>
+                    <td><code>10 // 3 = 3</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">%</code></td>
+                    <td>Modulo (reszta)</td>
+                    <td><code>10 % 3 = 1</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">**</code></td>
+                    <td>Potęgowanie</td>
+                    <td><code>2 ** 3 = 8</code></td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.floor(3.2)</span></td>
+                    <td>W dół</td>
+                    <td><code>3</code></td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.ceil(3.2)</span></td>
+                    <td>W górę</td>
+                    <td><code>4</code></td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.sqrt(9)</span></td>
+                    <td>Pierwiastek</td>
+                    <td><code>3.0</code></td>
+                </tr>
+                <tr>
+                    <td><span class="func">math.pi</span></td>
+                    <td>Liczba Pi</td>
+                    <td><code>3.14...</code></td>
+                </tr>
+                <tr>
+                    <td><code class="inline">sum(lista)</code></td>
+                    <td>Suma elementów listy</td>
+                    <td><code>sum([1,2,3]) = 6</code></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- PRAWY SIDEBAR (Spis Treści) -->
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Wstęp</a></li>
+            <li><a href="#sec-podstawy">2. Podstawowe Operacje</a></li>
+            <li><a href="#sec-stale">3. Stałe Matematyczne</a></li>
+            <li><a href="#sec-zaokraglanie">4. Zaokrąglanie</a></li>
+            <li><a href="#sec-potegi">5. Potęgi i Pierwiastki</a></li>
+            <li><a href="#sec-trygonometria">6. Trygonometria</a></li>
+            <li><a href="#sec-kalkulator-prosty">7. Prosty Kalkulator</a></li>
+            <li><a href="#sec-kalkulator-menu">8. Kalkulator z Menu</a></li>
+            <li><a href="#sec-kalkulator-zaawansowany">9. Kalkulator Interaktywny</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>

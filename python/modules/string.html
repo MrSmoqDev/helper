@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Praca z Tekstem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html" class="active">🔤 String</a></li>
+            <li><a href="lists.html">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home"><a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót</a></div>
+    </nav>
+
+    <div class="main-content">
+        <header><h1>Praca z Tekstem 🔤</h1><p>Manipulacja napisami – czyszczenie, formatowanie, wyszukiwanie.</p></header>
+
+        <div class="lesson-card" id="sec-wstep">
+            <h3>1. Dlaczego tekst jest ważny?</h3>
+            <p>Większość danych w programowaniu to tekst: input użytkownika, pliki konfiguracyjne, odpowiedzi API. Umiejętność obróbki stringów to podstawa.</p>
+            <pre><code>tekst = <span class="str">"  Python Jest Super!  "</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-podstawy">
+            <h3>2. Podstawowe Metody Stringa</h3>
+            <table>
+                <tr><th>Metoda</th><th>Opis</th><th>Przykład</th></tr>
+                <tr><td><code>.lower()</code></td><td>Małe litery</td><td><code>"ABC".lower() → "abc"</code></td></tr>
+                <tr><td><code>.upper()</code></td><td>Wielkie litery</td><td><code>"abc".upper() → "ABC"</code></td></tr>
+                <tr><td><code>.strip()</code></td><td>Usuwa spacje z końców</td><td><code>"  hi  ".strip() → "hi"</code></td></tr>
+                <tr><td><code>.replace(a,b)</code></td><td>Zamienia a na b</td><td><code>"kot".replace("o","a") → "kat"</code></td></tr>
+                <tr><td><code>.split(sep)</code></td><td>Dzieli string na listę</td><td><code>"a,b,c".split(",") → ["a","b","c"]</code></td></tr>
+                <tr><td><code>.join(lista)</code></td><td>Łączy listę w string</td><td><code>"-".join(["a","b"]) → "a-b"</code></td></tr>
+            </table>
+            <pre><code>tekst = <span class="str">"  Python Jest Super!  "</span>
+
+<span class="kw">print</span>(tekst.<span class="func">lower</span>())      <span class="out"># "  python jest super!  "</span>
+<span class="kw">print</span>(tekst.<span class="func">strip</span>())       <span class="out"># "Python Jest Super!"</span>
+<span class="kw">print</span>(tekst.<span class="func">replace</span>(<span class="str">" "</span>, <span class="str">"_"</span>)) <span class="out"># "__Python_Jest_Super!__"</span>
+<span class="kw">print</span>(tekst.<span class="func">split</span>())        <span class="out"># ["Python", "Jest", "Super!"]</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-formatowanie">
+            <h3>3. Formatowanie Stringów (f-strings)</h3>
+            <p>Najnowocześniejszy sposób wstawiania zmiennych do tekstu.</p>
+            <pre><code>imie = <span class="str">"Anna"</span>
+wiek = <span class="num">25</span>
+punkty = <span class="num">98.7654</span>
+
+<span class="com"># Podstawowe f-string</span>
+<span class="kw">print</span>(<span class="str">f"Cześć {imie}, masz {wiek} lat!"</span>)
+
+<span class="com"># Formatowanie liczb</span>
+<span class="kw">print</span>(<span class="str">f"Punkty: {punkty:.2f}"</span>)  <span class="out"># Punkty: 98.77</span>
+
+<span class="com"># Wyrównanie tekstu</span>
+<span class="kw">print</span>(<span class="str">f"|{imie:>10}|"</span>)  <span class="out"># "|      Anna|"</span>
+<span class="kw">print</span>(<span class="str">f"|{imie:<10}|"</span>)  <span class="out"># "|Anna      |"</span>
+<span class="kw">print</span>(<span class="str">f"|{imie:^10}|"</span>)  <span class="out"># "|   Anna   |"</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-wyszukiwanie">
+            <h3>4. Wyszukiwanie i Sprawdzanie</h3>
+            <pre><code>email = <span class="str">"user@example.com"</span>
+
+<span class="com"># Czy zawiera?</span>
+<span class="kw">print</span>(<span class="str">"@"</span> <span class="kw">in</span> email)  <span class="out"># True</span>
+
+<span class="com"># Pozycja podstringu</span>
+<span class="kw">print</span>(email.<span class="func">find</span>(<span class="str">"@"</span>))  <span class="out"># 4</span>
+<span class="kw">print</span>(email.<span class="func">index</span>(<span class="str">"@"</span>))  <span class="out"># 4 (ale rzuca błąd jeśli nie znajdzie!)</span>
+
+<span class="com"># Sprawdzanie typu</span>
+<span class="kw">print</span>(<span class="str">"123"</span>.<span class="func">isdigit</span>())      <span class="out"># True</span>
+<span class="kw">print</span>(<span class="str">"abc"</span>.<span class="func">isalpha</span>())      <span class="out"># True</span>
+<span class="kw">print</span>(<span class="str">"abc123"</span>.<span class="func">isalnum</span>())   <span class="out"># True</span>
+<span class="kw">print</span>(<span class="str">"HELLO"</span>.<span class="func">isupper</span>())    <span class="out"># True</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>5. 🛠️ Projekt: Walidator Emaila</h3>
+            <pre><code><span class="kw">def</span> <span class="func">waliduj_email</span>(email):
+    <span class="str">"""Prosta walidacja adresu email"""</span>
+    email = email.<span class="func">strip</span>().<span class="func">lower</span>()
+    
+    <span class="com"># Sprawdź podstawowe warunki</span>
+    <span class="kw">if</span> <span class="str">"@"</span> <span class="kw">not</span> <span class="kw">in</span> email:
+        <span class="kw">return</span> <span class="kw">False</span>, <span class="str">"Brak @"</span>
+    
+    <span class="kw">if</span> email.<span class="func">count</span>(<span class="str">"@"</span>) != <span class="num">1</span>:
+        <span class="kw">return</span> <span class="kw">False</span>, <span class="str">"Za dużo @"</span>
+    
+    lokalna, domena = email.<span class="func">split</span>(<span class="str">"@"</span>)
+    
+    <span class="kw">if</span> <span class="kw">not</span> lokalna <span class="kw">or</span> <span class="kw">not</span> domena:
+        <span class="kw">return</span> <span class="kw">False</span>, <span class="str">"Pusta część przed/po @"</span>
+    
+    <span class="kw">if</span> <span class="str">"."</span> <span class="kw">not</span> <span class="kw">in</span> domena:
+        <span class="kw">return</span> <span class="kw">False</span>, <span class="str">"Brak kropki w domenie"</span>
+    
+    <span class="kw">return</span> <span class="kw">True</span>, <span class="str">"OK"</span>
+
+<span class="com"># Testy</span>
+testy = [<span class="str">"user@example.com"</span>, <span class="str">"  ADMIN@TEST.PL  "</span>, <span class="str">"brak-małpy"</span>, <span class="str">"@@@.com"</span>]
+<span class="kw">for</span> e <span class="kw">in</span> testy:
+    ok, msg = <span class="func">waliduj_email</span>(e)
+    status = <span class="str">"✅"</span> <span class="kw">if</span> ok <span class="kw">else</span> <span class="str">"❌"</span>
+    <span class="kw">print</span>(<span class="str">f"{status} {e.strip():25} → {msg}"</span>)</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga String</h3>
+            <table>
+                <tr><th>Metoda</th><th>Opis</th></tr>
+                <tr><td><code>.lower()/.upper()</code></td><td>Zmiana wielkości liter</td></tr>
+                <tr><td><code>.strip()</code></td><td>Usuwa białe znaki z końców</td></tr>
+                <tr><td><code>.replace(a,b)</code></td><td>Zamienia a na b</td></tr>
+                <tr><td><code>.split(sep)</code></td><td>Dzieli na listę po separatorze</td></tr>
+                <tr><td><code>sep.join(lista)</code></td><td>Łączy listę w string</td></tr>
+                <tr><td><code>.find(sub)</code></td><td>Pozycja podstringu (-1 jeśli brak)</td></tr>
+                <tr><td><code>.isdigit()/.isalpha()</code></td><td>Sprawdza typ znaków</td></tr>
+                <tr><td><code>f"{var:.2f}"</code></td><td>Formatowanie liczb w f-string</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-wstep">1. Wstęp</a></li>
+            <li><a href="#sec-podstawy">2. Podstawowe Metody</a></li>
+            <li><a href="#sec-formatowanie">3. Formatowanie (f-strings)</a></li>
+            <li><a href="#sec-wyszukiwanie">4. Wyszukiwanie</a></li>
+            <li><a href="#sec-projekt">5. Walidator Emaila</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

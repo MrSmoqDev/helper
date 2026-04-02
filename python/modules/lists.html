@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Listy i Słowniki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <h2><i class="fab fa-python"></i> Python Kurs</h2>
+        <ul class="nav-links">
+            <li><a href="../general.html">📘 Wstęp</a></li>
+            <li><a href="math.html">📐 Math</a></li>
+            <li><a href="time.html">⏳ Time</a></li>
+            <li><a href="files.html">📁 Pliki</a></li>
+            <li><a href="random.html">🎲 Random</a></li>
+            <li><a href="string.html">🔤 String</a></li>
+            <li><a href="lists.html" class="active">📋 Listy</a></li>
+            <li><a href="json.html">📦 JSON</a></li>
+            <li><a href="datetime.html">📅 Datetime</a></li>
+            <li><a href="game.html">🎮 Gra</a></li>
+        </ul>
+        <div class="back-home"><a href="../index.html"><i class="fas fa-arrow-left"></i> Powrót</a></div>
+    </nav>
+
+    <div class="main-content">
+        <header><h1>Listy i Słowniki 📋</h1><p>Podstawowe struktury danych w Pythonie – przechowywanie i organizacja informacji.</p></header>
+
+        <div class="lesson-card" id="sec-listy">
+            <h3>1. Listy – Podstawy</h3>
+            <p>Listy to uporządkowane kolekcje elementów, które mogą być dowolnego typu.</p>
+            <pre><code><span class="com"># Tworzenie listy</span>
+owoce = [<span class="str">"jabłko"</span>, <span class="str">"banan"</span>, <span class="str">"gruszka"</span>]
+liczby = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+mieszana = [<span class="str">"tekst"</span>, <span class="num">42</span>, <span class="kw">True</span>, <span class="kw">None</span>]
+
+<span class="com"># Dostęp do elementów (indeks od 0!)</span>
+<span class="kw">print</span>(owoce[<span class="num">0</span>])   <span class="out"># "jabłko"</span>
+<span class="kw">print</span>(owoce[-<span class="num">1</span>])  <span class="out"># "gruszka" (ostatni)</span>
+
+<span class="com"># Modyfikacja</span>
+owoce[<span class="num">1</span>] = <span class="str">"truskawka"</span>
+owoce.<span class="func">append</span>(<span class="str">"kiwi"</span>)  <span class="com"># Dodaj na koniec</span>
+owoce.<span class="func">insert</span>(<span class="num">0</span>, <span class="str">"mango"</span>)  <span class="com"># Wstaw na początek</span>
+
+<span class="com"># Usuwanie</span>
+owoce.<span class="func">remove</span>(<span class="str">"jabłko"</span>)  <span class="com"># Usuwa pierwsze wystąpienie</span>
+ostatni = owoce.<span class="func">pop</span>()     <span class="com"># Usuwa i zwraca ostatni</span>
+<span class="kw">del</span> owoce[<span class="num">0</span>]            <span class="com"># Usuwa po indeksie</span>
+
+<span class="com"># Inne przydatne metody</span>
+<span class="kw">print</span>(<span class="func">len</span>(owoce))        <span class="out"># Długość listy</span>
+<span class="kw">print</span>(<span class="str">"banan"</span> <span class="kw">in</span> owoce) <span class="out"># Czy element jest w liście?</span>
+owoce.<span class="func">sort</span>()             <span class="com"># Sortuje alfabetycznie</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-slicing">
+            <h3>2. Slicing – Wycinanie Fragmentów</h3>
+            <pre><code>liczby = [<span class="num">0</span>, <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>, <span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>]
+
+<span class="kw">print</span>(liczby[<span class="num">2</span>:<span class="num">5</span>])    <span class="out"># [2, 3, 4] (od indeksu 2 do 4)</span>
+<span class="kw">print</span>(liczby[:<span class="num">3</span>])     <span class="out"># [0, 1, 2] (pierwsze 3)</span>
+<span class="kw">print</span>(liczby[<span class="num">7</span>:])     <span class="out"># [7, 8, 9] (od 7 do końca)</span>
+<span class="kw">print</span>(liczby[::<span class="num">2</span>])    <span class="out"># [0, 2, 4, 6, 8] (co drugi)</span>
+<span class="kw">print</span>(liczby[::-<span class="num">1</span>])   <span class="out"># [9,8,7,6,5,4,3,2,1,0] (odwrócona)</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-slowniki">
+            <h3>3. Słowniki – Klucz:Wartość</h3>
+            <p>Słowniki przechowują dane w parach <strong>klucz → wartość</strong>. Idealne do konfiguracji, profilów użytkowników, itp.</p>
+            <pre><code><span class="com"># Tworzenie słownika</span>
+gracz = {
+    <span class="str">"imie"</span>: <span class="str">"Jan"</span>,
+    <span class="str">"poziom"</span>: <span class="num">15</span>,
+    <span class="str">"hp"</span>: <span class="num">100</span>,
+    <span class="str">"ekwipunek"</span>: [<span class="str">"miecz"</span>, <span class="str">"tarcza"</span>, <span class="str">"eliksir"</span>]
+}
+
+<span class="com"># Dostęp do wartości</span>
+<span class="kw">print</span>(gracz[<span class="str">"imie"</span>])           <span class="out"># "Jan"</span>
+<span class="kw">print</span>(gracz.<span class="func">get</span>(<span class="str">"mana"</span>, <span class="num">0</span>))   <span class="out"># 0 (bezpieczny dostęp z wartością domyślną)</span>
+
+<span class="com"># Dodawanie / zmiana</span>
+gracz[<span class="str">"mana"</span>] = <span class="num">50</span>              <span class="com"># Dodaj nowy klucz</span>
+gracz[<span class="str">"poziom"</span>] += <span class="num">1</span>           <span class="com"># Zmień istniejący</span>
+
+<span class="com"># Usuwanie</span>
+<span class="kw">del</span> gracz[<span class="str">"hp"</span>]                <span class="com"># Usuwa klucz</span>
+usuniety = gracz.<span class="func">pop</span>(<span class="str">"poziom"</span>)  <span class="com"># Usuwa i zwraca wartość</span>
+
+<span class="com"># Iteracja</span>
+<span class="kw">for</span> klucz, wartosc <span class="kw">in</span> gracz.<span class="func">items</span>():
+    <span class="kw">print</span>(<span class="str">f"{klucz}: {wartosc}"</span>)
+
+<span class="com"># Przydatne metody</span>
+<span class="kw">print</span>(gracz.<span class="func">keys</span>())    <span class="out"># dict_keys(['imie', 'ekwipunek', ...])</span>
+<span class="kw">print</span>(gracz.<span class="func">values</span>())  <span class="out"># dict_values(['Jan', ['miecz',...], ...])</span></code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-projekt">
+            <h3>4. 🎮 Projekt: Ekwipunek Gracza</h3>
+            <pre><code><span class="kw">def</span> <span class="func">utworz_gracza</span>(imie):
+    <span class="str">"""Tworzy nowy profil gracza"""</span>
+    <span class="kw">return</span> {
+        <span class="str">"imie"</span>: imie,
+        <span class="str">"poziom"</span>: <span class="num">1</span>,
+        <span class="str">"xp"</span>: <span class="num">0</span>,
+        <span class="str">"ekwipunek"</span>: [],
+        <span class="str">"staty"</span>: {<span class="str">"siła"</span>: <span class="num">10</span>, <span class="str">"zręczność"</span>: <span class="num">10</span>, <span class="str">"inteligencja"</span>: <span class="num">10</span>}
+    }
+
+<span class="kw">def</span> <span class="func">dodaj_przedmiot</span>(gracz, przedmiot):
+    <span class="str">"""Dodaje przedmiot do ekwipunku"""</span>
+    gracz[<span class="str">"ekwipunek"</span>].<span class="func">append</span>(przedmiot)
+    <span class="kw">print</span>(<span class="str">f"✅ {przedmiot} dodany do ekwipunku!"</span>)
+
+<span class="kw">def</span> <span class="func">zdobadz_xp</span>(gracz, ile):
+    <span class="str">"""Dodaje XP i sprawdza awans"</span>
+    gracz[<span class="str">"xp"</span>] += ile
+    <span class="kw">print</span>(<span class="str">f"✨ +{ile} XP!"</span>)
+    
+    <span class="kw">if</span> gracz[<span class="str">"xp"</span>] >= gracz[<span class="str">"poziom"</span>] * <span class="num">100</span>:
+        gracz[<span class="str">"poziom"</span>] += <span class="num">1</span>
+        <span class="kw">print</span>(<span class="str">f"🎉 AWANS! Poziom {gracz['poziom']}!"</span>)
+
+<span class="com"># Demo</span>
+jan = <span class="func">utworz_gracza</span>(<span class="str">"Jan"</span>)
+<span class="func">dodaj_przedmiot</span>(jan, <span class="str">"Miecz Żelazny"</span>)
+<span class="func">dodaj_przedmiot</span>(jan, <span class="str">"Eliksir Zdrowia"</span>)
+<span class="func">zdobadz_xp</span>(jan, <span class="num">150</span>)
+
+<span class="com"># Wyświetl profil</span>
+<span class="kw">print</span>(<span class="str">"\n=== PROFIL GRACZA ==="</span>)
+<span class="kw">for</span> k, v <span class="kw">in</span> jan.<span class="func">items</span>():
+    <span class="kw">print</span>(<span class="str">f"{k}: {v}"</span>)</code></pre>
+        </div>
+
+        <div class="lesson-card" id="sec-sciaga">
+            <h3>📝 Ściąga – Listy i Słowniki</h3>
+            <table>
+                <tr><th>Operacja</th><th>Lista</th><th>Słownik</th></tr>
+                <tr><td>Dostęp</td><td><code>lista[0]</code></td><td><code>slownik["klucz"]</code></td></tr>
+                <tr><td>Dodanie</td><td><code>.append(x)</code></td><td><code>slownik["k"] = v</code></td></tr>
+                <tr><td>Usunięcie</td><td><code>.pop()</code>, <code>del</code></td><td><code>.pop("k")</code>, <code>del</code></td></tr>
+                <tr><td>Długość</td><td><code>len(lista)</code></td><td><code>len(slownik)</code></td></tr>
+                <tr><td>Sprawdzenie</td><td><code>x in lista</code></td><td><code>"k" in slownik</code></td></tr>
+                <tr><td>Iteracja</td><td><code>for x in lista</code></td><td><code>for k,v in slownik.items()</code></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <nav class="toc-sidebar">
+        <h4>Spis Treści</h4>
+        <ul class="toc-list">
+            <li><a href="#sec-listy">1. Listy – Podstawy</a></li>
+            <li><a href="#sec-slicing">2. Slicing</a></li>
+            <li><a href="#sec-slowniki">3. Słowniki</a></li>
+            <li><a href="#sec-projekt">4. Ekwipunek Gracza</a></li>
+            <li><a href="#sec-sciaga">📝 Ściąga</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
