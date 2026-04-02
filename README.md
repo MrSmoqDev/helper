@@ -57,37 +57,3 @@ Wydajne programowanie strukturalne i obiektowe.
 | **OOP** | Klasy, obiekty, dziedziczenie | System Bohaterów |
 | **Files** | fstream, zapis/odczyt | Dziennik (Logger) |
 | **Game** | Tablice 2D, logika gry | Kółko i Krzyżyk |
-
----
-
-## 📂 Struktura Projektu
-
-```bash
-.
-├── index.html              # Strona główna (Menu wyboru języka)
-├── README.md               # Dokumentacja
-├── python/                 # 🐍 Sekcja Python
-│   ├── style.css           # Arkusz stylów Python
-│   ├── general.html        # Wstęp do Pythona
-│   └── modules/            # Lekcje Pythona
-│       ├── math.html
-│       ├── time.html
-│       ├── files.html
-│       ├── random.html
-│       ├── string.html
-│       ├── lists.html
-│       ├── json.html
-│       ├── datetime.html
-│       └── game.html
-└── cpp/                    # ⚡ Sekcja C++
-    ├── style.css           # Arkusz stylów C++
-    ├── general.html        # Wstęp do C++
-    └── modules/            # Lekcje C++
-        ├── syntax.html
-        ├── variables.html
-        ├── control.html
-        ├── functions.html
-        ├── arrays.html
-        ├── oop.html
-        ├── files.html
-        └── game.html
