@@ -11,7 +11,7 @@
 
 ## 🚀 Demo
 
-Odwiedź stronę tutaj: **[🔗 mrsmoqdev.github.io](https://mrsmoqdev.github.io/helper/)**
+Odwiedź stronę tutaj: **🔗 [mrsmoqdev.github.io](https://mrsmoqdev.github.io/helper/)**
 
 ---
 
